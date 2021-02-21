@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "682273569950",
+    "firebase_url": "https://devtermquiz-default-rtdb.firebaseio.com",
+    "project_id": "devtermquiz",
+    "storage_bucket": "devtermquiz.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682273569950:android:d1bbb6a4212f9f01678f8f",
+        "android_client_info": {
+          "package_name": "com.dagger.devtermquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682273569950-8omodd8v848p21ujillpdfijke6ps30m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dagger.devtermquiz",
+            "certificate_hash": "3d4d6e1967dd9f53fa2bf727210ed9bc4a09a51f"
+          }
+        },
+        {
+          "client_id": "682273569950-v63u370qdtbg5b3d5o8v4q2jg5le7b7n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9zbD-ygTtuV8WHIdBpqYys0aD3qCgrDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682273569950-v63u370qdtbg5b3d5o8v4q2jg5le7b7n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
