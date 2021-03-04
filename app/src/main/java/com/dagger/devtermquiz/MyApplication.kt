@@ -4,6 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
+import com.dagger.devtermquiz.di.apiModules
+import com.dagger.devtermquiz.di.networkModules
+import com.dagger.devtermquiz.di.viewModelModules
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
@@ -23,7 +26,7 @@ class MyApplication : Application() {
         // init Koin
         startKoin {
             androidContext(this@MyApplication)
-//            modules(listOf(apiModules, appModules, networkModules, localModules, viewModelModules))
+            modules(listOf(apiModules, networkModules, viewModelModules))
         }
 
         // init Logger

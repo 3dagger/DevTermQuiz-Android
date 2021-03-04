@@ -5,6 +5,6 @@ interface MainNavigator {
 
     }
     interface ViewModel{
-
+        fun disposableClear()
     }
 }

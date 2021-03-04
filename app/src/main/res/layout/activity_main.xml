@@ -11,20 +11,23 @@
 
         <EditText
             android:id="@+id/txt_firebase"
-            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hello World!"/>
 
         <Button
             android:id="@+id/btn_send"
+            android:layout_below="@id/txt_firebase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="전송"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/txt_firebase"
-            />
+            android:text="전송" />
 
+        <ListView
+            android:id="@+id/list_item"
+            android:layout_below="@id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </ListView>
 
     </RelativeLayout>
 

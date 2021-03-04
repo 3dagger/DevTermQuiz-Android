@@ -89,6 +89,7 @@ dependencies {
     // RxJava3 : https://github.com/ReactiveX/RxKotlin
     implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
     implementation "io.reactivex.rxjava3:rxkotlin:$rxjava_version"
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
     // ScalableLayout : https://github.com/ssomai/ScalableLayout/blob/master/README_ko.md
     implementation "com.ssomai:android.scalablelayout:$scalable_version"

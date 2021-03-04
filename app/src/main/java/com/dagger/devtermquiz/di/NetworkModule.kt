@@ -1,5 +1,7 @@
 package com.dagger.devtermquiz.di
 
+import com.dagger.devtermquiz.ApiData
+import com.dagger.devtermquiz.BuildConfig
 import com.dagger.devtermquiz.Constants
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -28,16 +30,16 @@ var networkModules = module {
             readTimeout(Constants.READ_TIMEOUT, TimeUnit.SECONDS)
             retryOnConnectionFailure(true) // 연결 실패시 재 시도 할 것인가?
             addInterceptor(HttpLoggingInterceptor().apply {
-//                if (BuildConfig.DEBUG) {
-//                    level = HttpLoggingInterceptor.Level.BODY
-//                }
+                if (BuildConfig.DEBUG) {
+                    level = HttpLoggingInterceptor.Level.BODY
+                }
             })
         }.build()
     }
 
     single<Retrofit> {
         Retrofit.Builder()
-//            .baseUrl(ApiData.getHostUrl())
+            .baseUrl(ApiData.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(get()))
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .client(get())
