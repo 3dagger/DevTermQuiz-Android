@@ -22,12 +22,6 @@
             android:layout_height="wrap_content"
             android:text="전송" />
 
-        <ListView
-            android:id="@+id/list_item"
-            android:layout_below="@id/btn_send"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </ListView>
 
     </RelativeLayout>
 
