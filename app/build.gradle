@@ -54,6 +54,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // CardView
+    implementation "androidx.cardview:cardview:$cardview_version"
+
+    // ViewPager2
+    implementation "androidx.viewpager2:viewpager2:$viewpager2_version"
+
     // RetroFit2 : https://github.com/square/retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
@@ -114,4 +120,5 @@ dependencies {
 
     // Firebase Realtime Database (Kotlin) - https://github.com/firebase/quickstart-android/blob/master/database/app/build.gradle
     implementation 'com.google.firebase:firebase-database-ktx'
+
 }

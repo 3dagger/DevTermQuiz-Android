@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/Theme.DevTermQuiz">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".view.main.MainActivity"
             android:screenOrientation="portrait">

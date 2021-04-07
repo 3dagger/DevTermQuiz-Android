@@ -6,10 +6,10 @@ data class SingleQuiz(
     @SerializedName("count") var count: Int,
     @SerializedName("next") var next: String,
     @SerializedName("previous") var previous: String,
-    @SerializedName("results") var results: List<Resluts>
+    @SerializedName("results") var results: List<SingleQuizResults>
 )
 
-data class Resluts(
+data class SingleQuizResults(
     @SerializedName("title") var title: String,
     @SerializedName("body") var body: String,
     @SerializedName("answer") var answer: Int,

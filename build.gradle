@@ -16,6 +16,8 @@ buildscript {
         double_back_press_version = '0.0.1'
         coroutines_version = '1.4.2'
         firebase_bom_version = '26.5.0'
+        cardview_version = '1.0.0'
+        viewpager2_version = '1.0.0'
     }
     repositories {
         google()
