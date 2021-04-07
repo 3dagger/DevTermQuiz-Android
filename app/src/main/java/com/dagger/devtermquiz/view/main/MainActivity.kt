@@ -7,6 +7,7 @@ import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.base.BaseRecyclerView
 import com.dagger.devtermquiz.databinding.ActivityMainBinding
 import com.dagger.devtermquiz.databinding.QuestionItemBinding
+import com.dagger.devtermquiz.model.django.quiz.SingleQuizExample
 import com.dagger.devtermquiz.model.django.quiz.SingleQuizResults
 import com.dagger.devtermquiz.view.main.model.MainViewModel
 import com.google.firebase.database.DataSnapshot
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             activity = this@MainActivity
             vm = viewModel
 
-            recyclerView.adapter = object : BaseRecyclerView.Adapter<List<SingleQuizResults>, QuestionItemBinding>(
+            recyclerView.adapter = object : BaseRecyclerView.Adapter<List<SingleQuizExample>, QuestionItemBinding>(
                layoutResId = R.layout.question_item,
                bindingVariableId = BR.questionListData
             ){}
@@ -44,9 +45,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun onProcess() {
         viewModel.onLoadSingleQuizData()
         viewModel.singleQuizData.observe(this@MainActivity, Observer {
-            val splitArray = it.results[0].body.split("/")
-            for(i in splitArray.indices) {
-            }
+//            val splitArray = it.results[0].body.split("/")
+//            for(i in splitArray.indices) {
+//            }
 
         })
     }

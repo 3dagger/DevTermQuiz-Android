@@ -60,7 +60,6 @@
             android:layout_height="130dp"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:text="@{vm.singleQuizListData.get(0).title.toString()}"
             android:background="@color/list_item_bg_collapsed"/>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -66,7 +66,7 @@
                         android:layout_toEndOf="@id/chevron"
                         android:background="@drawable/ic_pill"
                         android:backgroundTint="@color/title_color"
-                        tools:text="@{questionListData.body}"/>
+                        tools:text="@{questionListData.ex[0].toString()}"/>
 
 
                     <View

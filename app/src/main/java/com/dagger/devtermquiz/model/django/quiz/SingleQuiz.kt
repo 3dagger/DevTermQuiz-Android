@@ -10,8 +10,22 @@ data class SingleQuiz(
 )
 
 data class SingleQuizResults(
-    @SerializedName("title") var title: String,
-    @SerializedName("body") var body: String,
+    @SerializedName("question") var question: String,
     @SerializedName("answer") var answer: Int,
-    @SerializedName("subtitle") var subtitle: String
+    @SerializedName("ex") var ex: List<SingleQuizExample>,
+    @SerializedName("comm") var comm: List<SingleQuizCommentary>
+)
+
+data class SingleQuizExample(
+    @SerializedName("firstExample") var firstExample: String,
+    @SerializedName("secondExample") var secondExample: String,
+    @SerializedName("thirdExample") var thirdExample: String,
+    @SerializedName("fourthExample") var fourthExample: String
+)
+
+data class SingleQuizCommentary(
+    @SerializedName("firstCommentary") var firstCommentary: String,
+    @SerializedName("secondCommentary") var secondCommentary: String,
+    @SerializedName("thirdCommentary") var thirdCommentary: String,
+    @SerializedName("fourthCommentary") var fourthCommentary: String
 )

@@ -2,7 +2,7 @@ package com.dagger.devtermquiz
 
 class ApiData {
     companion object{
-        const val BASE_URL = "http://drf-devtermquiz.herokuapp.com/"
+        const val BASE_URL = "http://leeam.herokuapp.com/"
 
         const val DJANGO_REQUEST_SINGLE_QUIZ = "quiz"
 
