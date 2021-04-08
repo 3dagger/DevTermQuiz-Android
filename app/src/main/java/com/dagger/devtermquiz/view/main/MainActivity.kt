@@ -1,5 +1,6 @@
 package com.dagger.devtermquiz.view.main
 
+import android.os.Handler
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import com.dagger.devtermquiz.BR
@@ -9,6 +10,7 @@ import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.base.BaseRecyclerView
 import com.dagger.devtermquiz.databinding.ActivityMainBinding
 import com.dagger.devtermquiz.databinding.QuestionItemBinding
+import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.model.django.quiz.SingleQuizExample
 import com.dagger.devtermquiz.model.django.quiz.SingleQuizResults
 import com.dagger.devtermquiz.view.main.model.MainViewModel
@@ -18,7 +20,9 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.orhanobut.logger.Logger
+import com.victor.loading.rotate.RotateLoading
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.question_item.*
 import org.koin.android.ext.android.inject
 
@@ -31,9 +35,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun initView() {
         viewModel.setNavigator(this)
 
+
+        rotateloading.show()
+        rotateloading.start()
+
+        Handler().postDelayed({
+            rotateloading.stop()
+        }, 10000)
+
         viewDataBinding.run {
             lifecycleOwner = this@MainActivity
-
             activity = this@MainActivity
             vm = viewModel
 
@@ -65,6 +76,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     fun onRepeatRequestSingleQuizData() {
         viewModel.onLoadSingleQuizData()
+//        loadingProgress.hide()
     }
 
     override fun onViewModelCleared() {

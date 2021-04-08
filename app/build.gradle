@@ -121,4 +121,5 @@ dependencies {
     // Firebase Realtime Database (Kotlin) - https://github.com/firebase/quickstart-android/blob/master/database/app/build.gradle
     implementation 'com.google.firebase:firebase-database-ktx'
 
+    implementation 'com.victor:lib:1.0.4'
 }

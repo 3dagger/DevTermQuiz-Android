@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        android:id="@+id/loadingView"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:lv_duration="30"
+        app:lv_end_color="@color/color_end"
+        app:lv_external_radius="24dp"
+        app:lv_internal_radius="4dp"
+        app:lv_start_color="@color/color_start" />
+
+    </RelativeLayout>
+
+</layout>
