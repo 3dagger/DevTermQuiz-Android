@@ -15,29 +15,19 @@ class MainViewModel(private val remoteService: RemoteService) : BaseViewModel<Ma
     private val _singleQuizData = MutableLiveData<SingleQuiz>()
     val singleQuizData: MutableLiveData<SingleQuiz> get() = _singleQuizData
 
-    private val _singleQuizListData = MutableLiveData<List<String>>()
-    val singleQuizListData: MutableLiveData<List<String>> get() = _singleQuizListData
+    private val _singleQuizListData = MutableLiveData<List<SingleQuizExample>>()
+    val singleQuizListData: MutableLiveData<List<SingleQuizExample>> get() = _singleQuizListData
 
     fun onLoadSingleQuizData() {
         addDisposable(remoteService.requestSingleQuiz()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({singleQuizData ->
-//                Logger.d("singleQuizData :: ${singleQuizData.results[0].body.split("/")}")
-//                Logger.d(singleQuizData)
+                Logger.d(singleQuizData.results)
+                Logger.d(singleQuizData.results.size)
                 _singleQuizData.value = singleQuizData
-//                _singleQuizListData.value = singleQuizData.results[0].ex
+                _singleQuizListData.value = singleQuizData.results[0].ex
 
-                _singleQuizListData.value = listOf<String>(
-                    singleQuizData.results[0].ex[0].firstExample,
-                    singleQuizData.results[0].ex[0].secondExample,
-                    singleQuizData.results[0].ex[0].thirdExample,
-                    singleQuizData.results[0].ex[0].fourthExample
-                )
-
-
-//                Logger.d(singleQuizData.results[0].ex)
-//                _singleQuizListData.value = singleQuizData.results
 
             }, {
 

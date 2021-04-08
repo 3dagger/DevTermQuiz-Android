@@ -1,8 +1,10 @@
 package com.dagger.devtermquiz.view.main
 
 import androidx.lifecycle.Observer
+import androidx.viewpager2.widget.ViewPager2
 import com.dagger.devtermquiz.BR
 import com.dagger.devtermquiz.R
+import com.dagger.devtermquiz.adapter.PagerRecyclerAdapter
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.base.BaseRecyclerView
 import com.dagger.devtermquiz.databinding.ActivityMainBinding
@@ -35,19 +37,28 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             activity = this@MainActivity
             vm = viewModel
 
-            recyclerView.adapter = object : BaseRecyclerView.Adapter<List<SingleQuizExample>, QuestionItemBinding>(
-               layoutResId = R.layout.question_item,
-               bindingVariableId = BR.questionListData
-            ){}
+//            recyclerView.adapter = object : BaseRecyclerView.Adapter<List<SingleQuizExample>, QuestionItemBinding>(
+//               layoutResId = R.layout.question_item,
+//               bindingVariableId = BR.questionListData
+//            ){}
+
+
         }
     }
 
     override fun onProcess() {
         viewModel.onLoadSingleQuizData()
         viewModel.singleQuizData.observe(this@MainActivity, Observer {
-//            val splitArray = it.results[0].body.split("/")
-//            for(i in splitArray.indices) {
-//            }
+            viewPager.apply {
+                adapter = PagerRecyclerAdapter(result = it.results)
+                orientation = ViewPager2.ORIENTATION_HORIZONTAL
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        Logger.d("Page $position")
+                    }
+                })
+            }
 
         })
     }

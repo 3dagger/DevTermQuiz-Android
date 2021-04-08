@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/firstCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/list_item_bg_collapsed"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/scale_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/list_item_horizontal_padding"
+                android:paddingTop="@dimen/list_item_vertical_padding"
+                android:paddingRight="@dimen/list_item_horizontal_padding"
+                android:paddingBottom="@dimen/list_item_vertical_padding"
+                android:transformPivotX="0dp">
+
+                <ImageView
+                    android:id="@+id/chevron"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/title_color" />
+
+                <TextView
+                    android:id="@+id/txt_ex_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/chevron"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/title_color" />
+
+                <View
+                    android:id="@+id/subtitle1"
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_one"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/chevron"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+                <View
+                    android:id="@+id/subtitle2"
+                    android:layout_width="85dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_one"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/subtitle1"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/secondCardView"
+            android:layout_below="@id/firstCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/list_item_bg_collapsed"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/scale_container_two"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/list_item_horizontal_padding"
+                android:paddingTop="@dimen/list_item_vertical_padding"
+                android:paddingRight="@dimen/list_item_horizontal_padding"
+                android:paddingBottom="@dimen/list_item_vertical_padding"
+                android:transformPivotX="0dp">
+
+                <ImageView
+                    android:id="@+id/chevron_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/title_color" />
+
+                <TextView
+                    android:id="@+id/txt_ex_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/chevron_two"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/title_color" />
+
+                <View
+                    android:id="@+id/subtitle_threr"
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_two"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/chevron_two"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+                <View
+                    android:id="@+id/subtitle_four"
+                    android:layout_width="85dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_two"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/subtitle_threr"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/thirdCardView"
+            android:layout_below="@id/secondCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/list_item_bg_collapsed"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/scale_cortainer_three"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/list_item_horizontal_padding"
+                android:paddingTop="@dimen/list_item_vertical_padding"
+                android:paddingRight="@dimen/list_item_horizontal_padding"
+                android:paddingBottom="@dimen/list_item_vertical_padding"
+                android:transformPivotX="0dp">
+
+                <ImageView
+                    android:id="@+id/chevron_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/title_color" />
+
+                <TextView
+                    android:id="@+id/txt_ex_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/chevron_three"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/title_color" />
+
+                <View
+                    android:id="@+id/subtitle_five"
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_three"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/chevron_three"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+                <View
+                    android:id="@+id/subtitle_six"
+                    android:layout_width="85dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_three"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/subtitle_five"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fourhCardView"
+            android:layout_below="@id/thirdCardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:cardBackgroundColor="@color/list_item_bg_collapsed"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="0dp"
+            app:cardMaxElevation="0dp">
+
+            <RelativeLayout
+                android:id="@+id/scale_container_four"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/list_item_horizontal_padding"
+                android:paddingTop="@dimen/list_item_vertical_padding"
+                android:paddingRight="@dimen/list_item_horizontal_padding"
+                android:paddingBottom="@dimen/list_item_vertical_padding"
+                android:transformPivotX="0dp">
+
+                <ImageView
+                    android:id="@+id/chevron_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    app:tint="@color/title_color" />
+
+                <TextView
+                    android:id="@+id/txt_ex_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/chevron_four"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/title_color" />
+
+                <View
+                    android:id="@+id/subtitle_seven"
+                    android:layout_width="100dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_four"
+                    android:layout_marginTop="8dp"
+                    android:layout_toEndOf="@id/chevron_four"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+
+                <View
+                    android:id="@+id/subtitle_eight"
+                    android:layout_width="85dp"
+                    android:layout_height="10dp"
+                    android:layout_below="@id/txt_ex_four"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toEndOf="@id/subtitle_seven"
+                    android:background="@drawable/ic_pill"
+                    android:backgroundTint="@color/subtitle_color" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/pageName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="50sp" />
+
+    </RelativeLayout>
+
+
+</layout>
