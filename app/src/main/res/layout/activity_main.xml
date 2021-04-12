@@ -67,14 +67,24 @@
             tools:text="@{vm.singleQuizData.results.get(0).question}"
             />
 
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerView"-->
+<!--            android:layout_below="@id/txt_question"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
+
+<!--        </androidx.recyclerview.widget.RecyclerView>-->
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/recycler_view"
             android:layout_below="@id/txt_question"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:clipToPadding="false"
+            android:paddingTop="20dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:listitem="@layout/item_view" />
 
 <!--        <androidx.viewpager2.widget.ViewPager2-->
 <!--            android:id="@+id/viewPager"-->

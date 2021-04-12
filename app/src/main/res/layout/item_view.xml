@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -20,9 +21,14 @@
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp">
 
-            <RelativeLayout
-                android:id="@+id/scale_container"
+            <FrameLayout
+                android:id="@+id/firstCardContainer"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/firstScaleContainer"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/list_item_horizontal_padding"
                 android:paddingTop="@dimen/list_item_vertical_padding"
@@ -31,7 +37,7 @@
                 android:transformPivotX="0dp">
 
                 <ImageView
-                    android:id="@+id/chevron"
+                    android:id="@+id/firstChevron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -39,38 +45,177 @@
                     app:tint="@color/title_color" />
 
                 <TextView
-                    android:id="@+id/txt_ex_one"
+                    android:id="@+id/firstExample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/chevron"
+                    android:layout_toEndOf="@id/firstChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/title_color" />
 
                 <View
-                    android:id="@+id/subtitle1"
+                    android:id="@+id/firstSubtitle"
                     android:layout_width="100dp"
                     android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_one"
+                    android:layout_below="@id/firstExample"
                     android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@id/chevron"
+                    android:layout_toEndOf="@id/firstChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/subtitle_color" />
 
-                <View
-                    android:id="@+id/subtitle2"
-                    android:layout_width="85dp"
-                    android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_one"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+
+                <LinearLayout
+                    android:id="@+id/firstExpaneView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/firstSubtitle"
+                    android:layout_alignStart="@id/firstExample"
+                    android:layout_marginTop="36dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/subtitle1"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/subtitle_color" />
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="gone">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color"
+                            android:transformPivotX="0dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
+            </FrameLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -86,9 +231,14 @@
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp">
 
-            <RelativeLayout
-                android:id="@+id/scale_container_two"
+            <FrameLayout
+                android:id="@+id/secondCardContainer"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/secondScaleContainer"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/list_item_horizontal_padding"
                 android:paddingTop="@dimen/list_item_vertical_padding"
@@ -97,7 +247,7 @@
                 android:transformPivotX="0dp">
 
                 <ImageView
-                    android:id="@+id/chevron_two"
+                    android:id="@+id/secondChevron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -105,38 +255,177 @@
                     app:tint="@color/title_color" />
 
                 <TextView
-                    android:id="@+id/txt_ex_two"
+                    android:id="@+id/secondExample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/chevron_two"
+                    android:layout_toEndOf="@id/secondChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/title_color" />
 
                 <View
-                    android:id="@+id/subtitle_threr"
+                    android:id="@+id/secondSubtitle"
                     android:layout_width="100dp"
                     android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_two"
+                    android:layout_below="@id/secondExample"
                     android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@id/chevron_two"
+                    android:layout_toEndOf="@id/secondChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/subtitle_color" />
 
-                <View
-                    android:id="@+id/subtitle_four"
-                    android:layout_width="85dp"
-                    android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_two"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+
+                <LinearLayout
+                    android:id="@+id/secondExpandView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/secondSubtitle"
+                    android:layout_alignStart="@id/secondExample"
+                    android:layout_marginTop="36dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/subtitle_threr"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/subtitle_color" />
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="gone">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color"
+                            android:transformPivotX="0dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
+            </FrameLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
@@ -152,9 +441,14 @@
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp">
 
-            <RelativeLayout
-                android:id="@+id/scale_cortainer_three"
+            <FrameLayout
+                android:id="@+id/thirdCardContainer"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/thirdScaleContainer"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/list_item_horizontal_padding"
                 android:paddingTop="@dimen/list_item_vertical_padding"
@@ -163,7 +457,7 @@
                 android:transformPivotX="0dp">
 
                 <ImageView
-                    android:id="@+id/chevron_three"
+                    android:id="@+id/thirdChevron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -171,41 +465,181 @@
                     app:tint="@color/title_color" />
 
                 <TextView
-                    android:id="@+id/txt_ex_three"
+                    android:id="@+id/thirdExample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/chevron_three"
+                    android:layout_toEndOf="@id/thirdChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/title_color" />
 
                 <View
-                    android:id="@+id/subtitle_five"
+                    android:id="@+id/subtitle1"
                     android:layout_width="100dp"
                     android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_three"
+                    android:layout_below="@id/thirdExample"
                     android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@id/chevron_three"
+                    android:layout_toEndOf="@id/thirdChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/subtitle_color" />
 
-                <View
-                    android:id="@+id/subtitle_six"
-                    android:layout_width="85dp"
-                    android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_three"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+
+                <LinearLayout
+                    android:id="@+id/thirdExpandView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/subtitle1"
+                    android:layout_alignStart="@id/thirdExample"
+                    android:layout_marginTop="36dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/subtitle_five"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/subtitle_color" />
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color"
+                            android:transformPivotX="0dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
+            </FrameLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/fourhCardView"
+            android:id="@+id/fourthCardView"
             android:layout_below="@id/thirdCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -217,9 +651,14 @@
             app:cardElevation="0dp"
             app:cardMaxElevation="0dp">
 
-            <RelativeLayout
-                android:id="@+id/scale_container_four"
+            <FrameLayout
+                android:id="@+id/fourthCardContainer"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/fourthScaleContainer"
+                android:layout_width="350dp"
                 android:layout_height="match_parent"
                 android:paddingLeft="@dimen/list_item_horizontal_padding"
                 android:paddingTop="@dimen/list_item_vertical_padding"
@@ -228,7 +667,7 @@
                 android:transformPivotX="0dp">
 
                 <ImageView
-                    android:id="@+id/chevron_four"
+                    android:id="@+id/fourthChevron"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
@@ -236,46 +675,180 @@
                     app:tint="@color/title_color" />
 
                 <TextView
-                    android:id="@+id/txt_ex_four"
+                    android:id="@+id/fourthExample"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/chevron_four"
+                    android:layout_toEndOf="@id/fourthChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/title_color" />
 
                 <View
-                    android:id="@+id/subtitle_seven"
+                    android:id="@+id/fourthSubtitle"
                     android:layout_width="100dp"
                     android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_four"
+                    android:layout_below="@id/fourthExample"
                     android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@id/chevron_four"
+                    android:layout_toEndOf="@id/fourthChevron"
                     android:background="@drawable/ic_pill"
                     android:backgroundTint="@color/subtitle_color" />
 
-                <View
-                    android:id="@+id/subtitle_eight"
-                    android:layout_width="85dp"
-                    android:layout_height="10dp"
-                    android:layout_below="@id/txt_ex_four"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
+
+                <LinearLayout
+                    android:id="@+id/fourthExpandView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fourthSubtitle"
+                    android:layout_alignStart="@id/fourthExample"
+                    android:layout_marginTop="36dp"
                     android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/subtitle_seven"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/subtitle_color" />
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color"
+                            android:transformPivotX="0dp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E7F7F7"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#0000"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/title_color" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="0.8" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_weight="1.5"
+                            android:background="@drawable/ic_pill"
+                            android:backgroundTint="@color/subtitle_color" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
+            </FrameLayout>
         </androidx.cardview.widget.CardView>
 
 
-        <TextView
-            android:id="@+id/pageName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="50sp" />
 
     </RelativeLayout>
 
