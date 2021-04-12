@@ -67,33 +67,20 @@
             tools:text="@{vm.singleQuizData.results.get(0).question}"
             />
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
-            android:layout_below="@+id/txt_question"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_below="@id/txt_question"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
+        </androidx.recyclerview.widget.RecyclerView>
+
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/viewPager"-->
 <!--            android:layout_below="@+id/txt_question"-->
-<!--            android:clipToPadding="false"-->
-<!--            android:paddingTop="20dp"-->
-<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--            tools:listitem="@layout/question_item"-->
-<!--            addItems="@{vm.singleQuizListData}" />-->
-
-<!--        <com.victor.loading.rotate.RotateLoading-->
-<!--            android:id="@+id/rotateloading"-->
-<!--            android:visibility="gone"-->
-<!--            android:layout_width="80dp"-->
-<!--            android:layout_height="80dp"-->
-<!--            app:loading_width="5dp"-->
-<!--            app:loading_color="#ffffff"-->
-<!--            android:layout_centerInParent="true"/>-->
-
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"/>-->
 
     </RelativeLayout>
 

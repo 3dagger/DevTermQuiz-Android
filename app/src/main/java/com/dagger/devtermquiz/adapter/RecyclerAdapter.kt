@@ -7,11 +7,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.model.django.quiz.SingleQuizResults
-import com.orhanobut.logger.Logger
+import com.github.florent37.expansionpanel.ExpansionLayout
+import com.github.florent37.expansionpanel.viewgroup.ExpansionLayoutCollection
+import java.util.*
 
-class PagerRecyclerAdapter(private val result: List<SingleQuizResults>) : RecyclerView.Adapter<PagerRecyclerAdapter.PagerViewHolder>() {
+class RecyclerAdapter(private val result: List<SingleQuizResults>) : RecyclerView.Adapter<RecyclerAdapter.RecyclerHolder>(){
+//    private val list: MutableList<Any> = ArrayList()
 
-    inner class PagerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    private val expansionsCollection = ExpansionLayoutCollection()
+
+    inner class RecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val textExampleOne: TextView = itemView.findViewById(R.id.txt_ex_one)
         private val textExampleTwo: TextView = itemView.findViewById(R.id.txt_ex_two)
         private val textExampleThree: TextView = itemView.findViewById(R.id.txt_ex_three)
@@ -28,23 +33,23 @@ class PagerRecyclerAdapter(private val result: List<SingleQuizResults>) : Recycl
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PagerRecyclerAdapter.PagerViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_view,
-            parent,
-            false
-        )
-        
-        Logger.d("onCreateViewHolder")
-        return PagerViewHolder(view)
+
+//    fun RecyclerAdapter() {
+//        expansionsCollection.openOnlyOne(true)
+//    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerHolder? {
+        return RecyclerHolder.buildFor(parent)
     }
 
-    override fun onBindViewHolder(holder: PagerRecyclerAdapter.PagerViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerAdapter.RecyclerHolder, position: Int) {
         holder.bind(position)
+        expansionsCollection.add(holder.expansionLayout)
     }
 
     override fun getItemCount(): Int {
         return result.size
     }
+
 
 }

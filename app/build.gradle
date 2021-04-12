@@ -121,9 +121,13 @@ dependencies {
     // Firebase Realtime Database (Kotlin) - https://github.com/firebase/quickstart-android/blob/master/database/app/build.gradle
     implementation 'com.google.firebase:firebase-database-ktx'
 
-    implementation 'com.victor:lib:1.0.4'
+    // Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
 
-    implementation "com.taishi-y:flipprogressdialog:0.1.0"
+    implementation 'com.pnikosis:materialish-progress:1.7'
 
-    implementation 'com.github.eneskarpuzoglu:android-fast-dialog:1.3.6'
+    implementation 'com.github.florent37:expansionpanel:1.2.4'
+
+
+
 }

@@ -4,9 +4,12 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.airbnb.lottie.LottieAnimationView
 
 fun Activity.showDialog(activity: Activity, title: String, contents: String, cancelable: Boolean) {
     AlertDialog.Builder(activity).apply {
@@ -24,6 +27,13 @@ fun <T> Context.openActivity(it: Class<T>, extras: Bundle.() -> Unit = {}) {
     val intent = Intent(this, it)
     intent.putExtras(Bundle().apply(extras))
     startActivity(intent)
+}
+
+fun LottieAnimationView.showLottie(ani: String,  loopBool: Boolean) {
+    setAnimation(ani)
+//    imageAssetsFolder = asFolder
+    playAnimation()
+    loop(loopBool)
 }
 
 fun View.show() {
