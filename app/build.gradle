@@ -126,8 +126,6 @@ dependencies {
 
     implementation 'com.pnikosis:materialish-progress:1.7'
 
-    implementation "com.github.florent37:expansionpanel:1.2.4"
-
     implementation "com.github.skydoves:expandablelayout:1.0.6"
 
     // Preferences DataStore
@@ -135,6 +133,9 @@ dependencies {
 
     // Easy Preferences - https://github.com/Pixplicity/EasyPrefs
     implementation 'com.pixplicity.easyprefs:library:1.9.0'
+
+    // Awsesome Dialog - https://github.com/chnouman/AwesomeDialog
+    implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 
 
 

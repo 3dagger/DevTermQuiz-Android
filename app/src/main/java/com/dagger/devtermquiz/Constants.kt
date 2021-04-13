@@ -8,10 +8,10 @@ class Constants {
         const val WRITE_TIMEOUT                                         = 30L
         const val READ_TIMEOUT                                          = 30L
 
-        const val ANIMATION_PLAYBACK_SPEED                              = 0.8
-        const val LOADING_ANIMATION_DURATION                            = 350
+        const val MOVE_MAIN_DELAYED_MILLIS                              = 1000L
 
         const val PREFS_FIRST_INIT                                      = false
-        const val PREFS_NOW_STRING                                      = "NOW_DAY"
+        const val PREFS_NOW_STRING                                      = "PREFS_NOW_DATE"
+        const val PREFS_USER_FIRST_ENTRY                                = "PREFS_USER_FIRST_ENRTY"
     }
 }

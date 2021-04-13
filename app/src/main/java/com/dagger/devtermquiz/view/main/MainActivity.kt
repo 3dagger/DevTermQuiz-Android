@@ -11,6 +11,7 @@ import com.dagger.devtermquiz.ext.toast
 import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.model.MainViewModel
+import com.example.awesomedialog.*
 import com.orhanobut.logger.Logger
 import com.pixplicity.easyprefs.library.Prefs
 import com.skydoves.expandablelayout.ExpandableAnimation
@@ -28,35 +29,45 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override val viewModel: MainViewModel by inject()
     private val utility: Utility by inject()
     lateinit var progress: CustomProgressDialog
-
-    private var firstInit: Boolean = true
-
-    private val loadingDuration: Long
-        get() = (Constants.LOADING_ANIMATION_DURATION / Constants.ANIMATION_PLAYBACK_SPEED).toLong()
-
+    
     fun onLoadNowDate() {
         Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
+        Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY , false)
     }
 
     override fun initView() {
         viewModel.setNavigator(this)
 
-        Logger.d("firstInit :: $firstInit")
+
         //최초 1회 접속 코드 작성해야 됨
-        if (firstInit) {
+        if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
             Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
-            !firstInit
+            Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY, false)
+            Logger.d("최초접속")
         }
 
-        Logger.d("firstInit2 :: $firstInit")
 
-        if( utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
+        if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
             Logger.d("다름")
+
+            // Add Logic
+            Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
+
         }else {
             Logger.d("같음")
+
+                AwesomeDialog.build(this)
+                    .title("축하합니다.")
+                    .body("다음 문제를 풀어보세요")
+                    .icon(R.drawable.ic_congrts)
+                    .onPositive("다음 문제로 이동하기") {
+                    }
+                    .position(AwesomeDialog.POSITIONS.CENTER)
+                    .show()
+
         }
 
-        Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
+
 
         progress = CustomProgressDialog(
             context = this@MainActivity,
@@ -70,6 +81,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             activity = this@MainActivity
             vm = viewModel
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY , false)
     }
 
     override fun onProcess() {
@@ -109,7 +125,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
 
     }
-//    }
 
     fun onRepeatRequestSingleQuizData() {
         viewModel.onLoadSingleQuizData()
