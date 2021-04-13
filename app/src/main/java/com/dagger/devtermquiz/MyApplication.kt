@@ -2,14 +2,17 @@ package com.dagger.devtermquiz
 
 import android.app.Application
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.dagger.devtermquiz.di.apiModules
+import com.dagger.devtermquiz.di.appModules
 import com.dagger.devtermquiz.di.networkModules
 import com.dagger.devtermquiz.di.viewModelModules
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import com.pixplicity.easyprefs.library.Prefs
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -26,7 +29,7 @@ class MyApplication : Application() {
         // init Koin
         startKoin {
             androidContext(this@MyApplication)
-            modules(listOf(apiModules, networkModules, viewModelModules))
+            modules(listOf(apiModules, networkModules, viewModelModules, appModules))
         }
 
         // init Logger
@@ -43,6 +46,14 @@ class MyApplication : Application() {
                 return BuildConfig.DEBUG
             }
         })
+
+        // init Easy Pref
+        Prefs.Builder()
+            .setContext(this)
+            .setMode(ContextWrapper.MODE_PRIVATE)
+            .setPrefsName(packageName)
+            .setUseDefaultSharedPreference(true)
+            .build()
 
 
 

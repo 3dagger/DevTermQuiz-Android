@@ -10,5 +10,8 @@ class Constants {
 
         const val ANIMATION_PLAYBACK_SPEED                              = 0.8
         const val LOADING_ANIMATION_DURATION                            = 350
+
+        const val PREFS_FIRST_INIT                                      = false
+        const val PREFS_NOW_STRING                                      = "NOW_DAY"
     }
 }
