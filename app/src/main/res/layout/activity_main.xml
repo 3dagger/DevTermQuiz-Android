@@ -80,15 +80,6 @@
             android:textStyle="bold"
             tools:text="@{vm.singleQuizData.results.get(0).question}" />
 
-        <!--        <androidx.recyclerview.widget.RecyclerView-->
-        <!--            android:id="@+id/recyclerView"-->
-        <!--            android:layout_below="@id/txt_question"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:orientation="vertical">-->
-
-        <!--        </androidx.recyclerview.widget.RecyclerView>-->
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -100,7 +91,7 @@
                 android:layout_height="match_parent">
 
                 <com.skydoves.expandablelayout.ExpandableLayout
-                    android:id="@+id/expandable"
+                    android:id="@+id/expandable1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
@@ -117,7 +108,7 @@
                     android:id="@+id/expandable2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/expandable"
+                    android:layout_below="@id/expandable1"
                     android:layout_marginTop="30dp"
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
@@ -137,22 +128,28 @@
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
                     app:expandable_isExpanded="false"
-                    app:expandable_parentLayout="@layout/example_second_view"
-                    app:expandable_secondLayout="@layout/commentary_second_view"
+                    app:expandable_parentLayout="@layout/example_third_view"
+                    app:expandable_secondLayout="@layout/commentary_third_view"
+                    app:expandable_showSpinner="false"
+                    app:expandable_spinner_gravity="end"
+                    app:expandable_spinner_margin="30dp" />
+
+                <com.skydoves.expandablelayout.ExpandableLayout
+                    android:id="@+id/expandable4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/expandable3"
+                    android:layout_marginTop="30dp"
+                    app:expandable_animation="bounce"
+                    app:expandable_duration="300"
+                    app:expandable_isExpanded="false"
+                    app:expandable_parentLayout="@layout/example_fourth_view"
+                    app:expandable_secondLayout="@layout/commentary_fourth_view"
                     app:expandable_showSpinner="false"
                     app:expandable_spinner_gravity="end"
                     app:expandable_spinner_margin="30dp" />
 
             </RelativeLayout>
-            <!--        <androidx.recyclerview.widget.RecyclerView-->
-            <!--            android:id="@+id/recycler_view"-->
-            <!--            android:layout_below="@id/txt_question"-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="match_parent"-->
-            <!--            android:clipToPadding="false"-->
-            <!--            android:paddingTop="20dp"-->
-            <!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-            <!--            tools:listitem="@layout/item_view" />-->
 
         </androidx.core.widget.NestedScrollView>
 
@@ -161,6 +158,24 @@
         <!--            android:layout_below="@+id/txt_question"-->
         <!--            android:layout_width="match_parent"-->
         <!--            android:layout_height="match_parent"/>-->
+<!--        <uk.co.markormesher.android_fab.FloatingActionButton-->
+<!--            android:id="@+id/fab"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            />-->
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_filter"
+            app:elevation="0dp" />
+
 
     </RelativeLayout>
 

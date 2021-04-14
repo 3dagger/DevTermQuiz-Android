@@ -1,6 +1,14 @@
 package com.dagger.devtermquiz.utility
 
+import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
+import com.dagger.devtermquiz.R
+import com.dagger.devtermquiz.listener.AwesomeDialogListener
+import com.example.awesomedialog.*
+import com.orhanobut.logger.Logger
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,8 +24,26 @@ class Utility(private val context: Context) {
 //        return sdfNow.format(date)
         val currentDateTime = Calendar.getInstance().time
         return SimpleDateFormat("MMdd", Locale.KOREA).format(currentDateTime)
-
-        // 현재 접속 어제 밤11시 12분 접속 -> 20210413   2400 2312 88
-        // 다음 접속 내일 새벽 2시 15분 접속 -> 2021041  2400 0215
     }
+
+    fun answerDialog(activity: Activity, cancelable: Boolean, listener: AwesomeDialogListener) {
+        AwesomeDialog.build(context = activity)
+            .title("축하합니다.")
+            .body("다음 문제를 풀어보세요")
+            .icon(R.drawable.ic_congrts)
+            .onPositive("다음 문제로 이동하기") {
+                listener.onConfirmClick()
+            }
+            .position(AwesomeDialog.POSITIONS.CENTER)
+            .setCancelable(cancelable)
+    }
+
+    fun wrongAnswerDialog(activity: Activity, cancelable: Boolean) {
+        AwesomeDialog.build(context = activity)
+            .title("아쉬워요")
+            .body("다른 답을 골라보세요")
+            .icon(R.drawable.ic_congrts)
+   }
+
+
 }

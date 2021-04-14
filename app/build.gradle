@@ -137,6 +137,11 @@ dependencies {
     // Awsesome Dialog - https://github.com/chnouman/AwesomeDialog
     implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 
+    // Floating Action Button - https://github.com/markormesher/android-fab
+    implementation 'uk.co.markormesher:android-fab:2.5.0'
+
+    // Fab - https://github.com/Krupen/FabulousFilter
+    implementation 'com.allattentionhere:fabulousfilter:0.0.5'
 
 
 }
