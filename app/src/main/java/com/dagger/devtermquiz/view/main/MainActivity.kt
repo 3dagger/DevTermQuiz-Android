@@ -1,5 +1,6 @@
 package com.dagger.devtermquiz.view.main
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.widget.TextView
 import androidx.core.view.size
@@ -27,13 +28,16 @@ import java.util.*
 
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator.View {
-
     override val layoutResourceId: Int get() = R.layout.activity_main
-    override val viewModel: MainViewModel by inject()
-    private val utility: Utility by inject()
-    private val doubleBackPress : DoubleBackPress by inject()
+
+    override val viewModel       : MainViewModel    by inject()
+    private  val utility         : Utility          by inject()
+    private  val doubleBackPress : DoubleBackPress  by inject()
+
+    var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
+
     lateinit var progress: CustomProgressDialog
-    
+
     fun onLoadNowDate() {
         Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
         Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY , false)
@@ -43,46 +47,25 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         viewModel.setNavigator(this)
 
 
-        //최초 1회 접속 코드 작성해야 됨
+        // 최초 접속
         if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
             Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
             Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY, false)
-//            Logger.d("최초접속")
+            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
         }
 
         doubleBackPress.setDoubleBackPressAction { finishAffinity() }
 
-        // Kotlin
-//        fab.setOnClickListener { v ->
-//            Logger.d("fab click")
-//        }
-//        fab.setContentCoverColour(0xffff9900.toInt())
-//        fab.setButtonIconResource(R.drawable.ic_drawer_icon)
-//        fab.cardView
-//        fab.contentCoverView
-//        fab.iconWrapper
 
-
+        // 00시 된 후 실행했을때
         if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
-//            Logger.d("다름")
-
             // Add Logic
+            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
             Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
-
         }else {
 //            Logger.d("같음")
 
-//            utility.answerDialog(
-//                activity = this@MainActivity,
-//                cancelable = false,
-//                listener = object : AwesomeDialogListener {
-//                    override fun onConfirmClick() {
-//                    }
-//                })
-
         }
-
-
 
         progress = CustomProgressDialog(
             context = this@MainActivity,
@@ -96,6 +79,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             activity = this@MainActivity
             vm = viewModel
         }
+
+        txt_question_count.text = "$todayCountQuestion / 10"
     }
 
     override fun onProcess() {
@@ -154,6 +139,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                 }
             }
 
+            if (todayCountQuestion == 10) {
+                utility.answerDialog(
+                    activity = this@MainActivity,
+                    cancelable = true,
+                    listener = object : AwesomeDialogListener {
+                        override fun onConfirmClick() {
+                        }
+                    })
+            }
+
 
             expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = it.results[0].ex[0].firstExample
             expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = it.results[0].comm[0].firstCommentary
@@ -165,9 +160,22 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     }
 
-
+    /**
+     * @author : 이수현
+     * @Date : 4/14/21 11:30 PM
+     * @Description : 다음 문제 호출 && 문제 카운팅
+     * @History :
+     *
+     **/
+    @SuppressLint("SetTextI18n")
     fun onRepeatRequestSingleQuizData() {
         viewModel.onLoadSingleQuizData()
+
+        todayCountQuestion++
+        Prefs.putInt(Constants.PREFS_QUESTION_COUNT, todayCountQuestion)
+        txt_question_count.text = "$todayCountQuestion / 10"
+
+        Logger.d(todayCountQuestion)
     }
 
     override fun onBackPressed() {
