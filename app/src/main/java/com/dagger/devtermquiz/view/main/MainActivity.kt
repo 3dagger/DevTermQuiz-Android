@@ -39,13 +39,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     lateinit var progress: CustomProgressDialog
 
     fun onLoadNowDate() {
-        Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
+//        Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
         Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY , false)
     }
 
     override fun initView() {
         viewModel.setNavigator(this)
-
 
         // 최초 접속
         if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
@@ -84,7 +83,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     }
 
     override fun onProcess() {
-        viewModel.onLoadSingleQuizData()
+//        viewModel.onLoadSingleQuizData()
+        viewModel.onLoadSearchSingleQuizData(id = todayCountQuestion)
 
         expandable1.setOnExpandListener {
             if (it) {
@@ -114,11 +114,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 //        }
 
         val expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
-
-        viewModel.singleQuizData.observe(this@MainActivity, Observer {
-
+        viewModel.searchSingleQuizData.observe(this@MainActivity, Observer {
             for (i in expandList.indices) {
-                if (i == it.results[0].answer) {
+                if (i == it.answer) {
                     expandList[i].parentLayout.setOnClickListener {
                         utility.answerDialog(
                             activity = this@MainActivity,
@@ -134,7 +132,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                         utility.wrongAnswerDialog(
                             activity = this@MainActivity,
                             cancelable = true
-                            )
+                        )
                     }
                 }
             }
@@ -150,8 +148,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             }
 
 
-            expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = it.results[0].ex[0].firstExample
-            expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = it.results[0].comm[0].firstCommentary
+            expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = it.firstExample
+            expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = it.firstCommentary
         })
 
         // 정답 0, 1, 2, 3
@@ -169,13 +167,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
      **/
     @SuppressLint("SetTextI18n")
     fun onRepeatRequestSingleQuizData() {
-        viewModel.onLoadSingleQuizData()
-
         todayCountQuestion++
+
+        viewModel.onLoadSearchSingleQuizData(id = todayCountQuestion)
         Prefs.putInt(Constants.PREFS_QUESTION_COUNT, todayCountQuestion)
         txt_question_count.text = "$todayCountQuestion / 10"
 
-        Logger.d(todayCountQuestion)
+//        Logger.d(todayCountQuestion)
     }
 
     override fun onBackPressed() {

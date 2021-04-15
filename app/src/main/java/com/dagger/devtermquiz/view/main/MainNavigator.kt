@@ -5,6 +5,8 @@ interface MainNavigator {
         fun dismissProgress()
     }
     interface ViewModel{
+        fun onLoadSearchSingleQuizData(id: Int)
+
         fun disposableClear()
     }
 }
