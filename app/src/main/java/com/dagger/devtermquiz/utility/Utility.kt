@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import com.awesomedialog.blennersilva.awesomedialoglibrary.AwesomeErrorDialog
 import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
 import com.example.awesomedialog.*
@@ -31,19 +32,48 @@ class Utility(private val context: Context) {
             .title("축하합니다.")
             .body("다음 문제를 풀어보세요")
             .icon(R.drawable.ic_congrts)
-            .onPositive("다음 문제로 이동하기") {
+            .onPositive("해설 보기") {
                 listener.onConfirmClick()
+            }
+            .onNegative("즐겨찾기에 추가하기") {
+
             }
             .position(AwesomeDialog.POSITIONS.CENTER)
             .setCancelable(cancelable)
     }
-
-    fun wrongAnswerDialog(activity: Activity, cancelable: Boolean) {
+//
+//    fun wrongAnswerDialog(activity: Activity, cancelable: Boolean) {
+//        AwesomeDialog.build(context = activity)
+//            .title("아쉬워요")
+//            .body("다른 답을 골라보세요")
+//            .icon(R.drawable.ic_congrts)
+//            .setCancelable(cancelable)
+//   }
+//
+    fun exhaustQuestionDialog(activity: Activity, cancelabel: Boolean) {
         AwesomeDialog.build(context = activity)
-            .title("아쉬워요")
-            .body("다른 답을 골라보세요")
+            .title("죄송합니다")
+            .body("준비한 문제를 다 푸셨어요.\n문제 업데이트 예정입니다!")
             .icon(R.drawable.ic_congrts)
-   }
+            .position(AwesomeDialog.POSITIONS.CENTER)
+            .setCancelable(cancelabel)
+    }
+
+    fun wrongAnswerDialog(context: Context,
+                          title: String,
+                          message: String,
+                          buttonText: String,
+                          cancelable: Boolean) {
+        AwesomeErrorDialog(context)
+            .setTitle(title)
+            .setMessage(message)
+            .setColoredCircle(R.color.dialogErrorBackgroundColor)
+            .setDialogIconAndColor(R.drawable.ic_dialog_error, R.color.white)
+            .setCancelable(cancelable)
+            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
+            .setButtonText(buttonText)
+            .show()
+    }
 
 
 }

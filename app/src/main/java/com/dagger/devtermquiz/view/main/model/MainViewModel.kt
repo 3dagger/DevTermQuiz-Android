@@ -32,6 +32,10 @@ class MainViewModel(private val remoteService: RemoteService) : BaseViewModel<Ma
                         _searchSingleQuizData.value = searchSingleQuizData.body()
                         getNavigator().dismissProgress()
                     }
+                    ResponseCode.CODE404.value -> {
+                        getNavigator().dismissProgress()
+                        getNavigator().onExhaustQuiz()
+                    }
                 }
             },{
                 Logger.d(it)

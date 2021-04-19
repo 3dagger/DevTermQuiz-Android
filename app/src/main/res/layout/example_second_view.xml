@@ -1,62 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:id="@+id/layout_cover"
+    android:layout_width="match_parent"
+    android:layout_height="90dp">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/md_blue_200"
+        app:cardCornerRadius="6dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/firstCardView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:orientation="vertical"
-            app:cardBackgroundColor="@color/list_item_bg_collapsed"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="0dp"
-            app:cardMaxElevation="0dp">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <RelativeLayout
-                android:id="@+id/firstScaleContainer"
-                android:layout_width="350dp"
-                android:layout_height="match_parent"
-                android:paddingTop="@dimen/list_item_vertical_padding"
-                android:paddingRight="@dimen/list_item_horizontal_padding"
-                android:paddingBottom="@dimen/list_item_vertical_padding"
-                android:transformPivotX="0dp">
+            <!--            <ImageView-->
+            <!--                android:layout_width="120dp"-->
+            <!--                android:layout_height="match_parent"-->
+            <!--                android:scaleType="fitXY" />-->
 
-                <ImageView
-                    android:id="@+id/firstChevron"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:srcCompat="@drawable/ic_chevron_right"
-                    app:tint="@color/title_color" />
-
-                <TextView
-                    android:id="@+id/firstExample"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_toEndOf="@id/firstChevron"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/title_color" />
-
-                <View
-                    android:id="@+id/firstSubtitle"
-                    android:layout_width="100dp"
-                    android:layout_height="10dp"
-                    android:layout_below="@id/firstExample"
-                    android:layout_marginTop="8dp"
-                    android:layout_toEndOf="@id/firstChevron"
-                    android:background="@drawable/ic_pill"
-                    android:backgroundTint="@color/subtitle_color" />
-            </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
-
-</layout>
+            <TextView
+                android:id="@+id/firstExample2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

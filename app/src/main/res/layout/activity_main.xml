@@ -68,6 +68,8 @@
             />
 
         <Button
+            android:id="@+id/btn_next"
+            android:visibility="gone"
             android:textStyle="bold"
             android:text="@string/str_next"
             android:onClick="@{() -> activity.onRepeatRequestSingleQuizData()}"
@@ -101,13 +103,12 @@
                     android:id="@+id/expandable1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
                     app:expandable_isExpanded="false"
                     app:expandable_parentLayout="@layout/example_first_view"
                     app:expandable_secondLayout="@layout/commentary_first_view"
-                    app:expandable_showSpinner="false"
                     app:expandable_spinner_gravity="end"
                     app:expandable_spinner_margin="30dp" />
 
@@ -116,7 +117,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/expandable1"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
                     app:expandable_isExpanded="false"
@@ -131,7 +132,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/expandable2"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
                     app:expandable_isExpanded="false"
@@ -146,7 +147,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/expandable3"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="15dp"
                     app:expandable_animation="bounce"
                     app:expandable_duration="300"
                     app:expandable_isExpanded="false"
@@ -172,16 +173,16 @@
 <!--            />-->
 
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="16dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/ic_filter"
-            app:elevation="0dp" />
+<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--            android:id="@+id/fab"-->
+<!--            android:layout_width="56dp"-->
+<!--            android:layout_height="56dp"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_alignParentRight="true"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:src="@drawable/ic_filter"-->
+<!--            app:elevation="0dp" />-->
 
 
     </RelativeLayout>
