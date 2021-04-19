@@ -4,7 +4,8 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#0F6088</color>
     <color name="colorAccent">#FF6284</color>
-    <color name="windowBackground">#51D1E2</color>
+    <color name="windowBackground">#8B575C</color>
+    <color name="itemPrimary">#C98986</color>
 
     <color name="tab_bg_color">#084A6E</color>
     <color name="bottom_bar_color">#33779C</color>

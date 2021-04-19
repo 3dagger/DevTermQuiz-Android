@@ -1,6 +1,7 @@
 package com.dagger.devtermquiz.view.main
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.widget.TextView
 import androidx.core.view.isVisible
@@ -22,16 +23,20 @@ import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.orhanobut.logger.Logger
 import com.pixplicity.easyprefs.library.Prefs
 import com.skydoves.expandablelayout.ExpandableAnimation
+import com.skydoves.expandablelayout.ExpandableLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.example_first_view.view.*
 import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.question_item.*
 import org.koin.android.ext.android.inject
 import org.w3c.dom.Text
+import uk.co.markormesher.android_fab.SpeedDialMenuAdapter
+import uk.co.markormesher.android_fab.SpeedDialMenuItem
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator.View {
+class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator.View{
     override val layoutResourceId: Int get() = R.layout.activity_main
 
     override val viewModel       : MainViewModel    by inject()
@@ -40,7 +45,24 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
+    lateinit var expandList: Array<ExpandableLayout>
     lateinit var progress: CustomProgressDialog
+
+    private val fabDialMenuAdapter = object : SpeedDialMenuAdapter() {
+        override fun getCount(): Int = 2
+
+        override fun getMenuItem(context: Context, position: Int): SpeedDialMenuItem = when (position) {
+            0 -> SpeedDialMenuItem(context, R.drawable.ic_drawer_icon, "즐겨찾기")
+            1 -> SpeedDialMenuItem(context, R.drawable.ic_arrow_down, "설정")
+            else -> throw IllegalArgumentException("No menu item: $position")
+        }
+
+        override fun onMenuItemClick(position: Int): Boolean {
+            toast("menu click :: $position")
+            return true
+        }
+
+    }
 
     fun onLoadNowDate() {
 //        Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
@@ -49,6 +71,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     override fun initView() {
         viewModel.setNavigator(this)
+
+        expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
+
+        fab.speedDialMenuAdapter = fabDialMenuAdapter
+        fab.setContentCoverColour(0xcc8b575c.toInt())
 
         // 최초 접속
         if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
@@ -89,9 +116,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun onProcess() {
         viewModel.onLoadSearchSingleQuizData(id = todayCountQuestion)
 
-        val expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
         viewModel.searchSingleQuizData.observe(this@MainActivity, Observer {
             for (i in expandList.indices) {
+
                 if (i == it.answer) {
                     expandList[i].parentLayout.setOnClickListener {
                         btn_next.show()
@@ -101,25 +128,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                             cancelable = false,
                             listener = object : AwesomeDialogListener {
                                 override fun onConfirmClick() {
-                                    for(j in expandList.indices) {
-                                        expandList[i].expand()
-                                        expandList[j].showSpinner = true
-                                        expandList[j].parentLayout.setOnClickListener {
-                                            if(!expandList[j].isExpanded) {
-                                                expandList[j].expand()
-                                            } else {
-                                                expandList[j].collapse()
-                                            }
-                                        expandList[j].secondLayout.setOnClickListener {
-                                            if(!expandList[j].isExpanded) {
-                                                expandList[j].expand()
-                                            } else {
-                                                expandList[j].collapse()
-                                            }
-                                        }
-                                        }
-                                    }
+                                    expandList[i].expand()
                                     expandList[i].parentLayout.setBackgroundColor(Color.GREEN)
+                                    afterAnswerQuestion()
                                 }
                             })
                     }
@@ -161,6 +172,26 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
         })
 
+    }
+
+    private fun afterAnswerQuestion() {
+        for(i in expandList.indices) {
+            expandList[i].showSpinner = true
+            expandList[i].parentLayout.setOnClickListener {
+                if(!expandList[i].isExpanded) {
+                    expandList[i].expand()
+                } else {
+                    expandList[i].collapse()
+                }
+                expandList[i].secondLayout.setOnClickListener {
+                    if(!expandList[i].isExpanded) {
+                        expandList[i].expand()
+                    } else {
+                        expandList[i].collapse()
+                    }
+                }
+            }
+        }
     }
 
     /**
