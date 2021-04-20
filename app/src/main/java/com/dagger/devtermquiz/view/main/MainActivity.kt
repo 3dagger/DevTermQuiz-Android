@@ -257,8 +257,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         todayCountQuestion++
         totalCountQuestion++
 
-        viewModel.favoriteAllData.observe(this@MainActivity, Observer {
-            Logger.d("DB ISERT RESULT :: $it")
+//        viewModel.favoriteAllData.observe(this@MainActivity, Observer {
+//            Logger.d("DB ISERT RESULT :: $it")
+//        })
+        viewModel.onLoadLiveFavoriteData().observe(this@MainActivity, Observer {
+            Logger.d("DB INSERT RESULT :: $it")
         })
 
         btn_next.gone()

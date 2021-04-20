@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "favorite")
+@Entity(tableName = "userFavorite")
 data class Favorite(
      @ColumnInfo(name = "question") val question: String,
      @ColumnInfo(name = "answer") var answer: Int,

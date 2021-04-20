@@ -1,5 +1,6 @@
 package com.dagger.devtermquiz.view.main.model
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dagger.devtermquiz.ResponseCode
 import com.dagger.devtermquiz.base.BaseViewModel
@@ -18,8 +19,8 @@ class MainViewModel(private val remoteService: RemoteService,
     private val _searchSingleQuizData = MutableLiveData<SearchQuiz>()
     val searchSingleQuizData: MutableLiveData<SearchQuiz> get() = _searchSingleQuizData
 
-    private val _favoriteAllData = MutableLiveData<List<Favorite>>()
-    val favoriteAllData : MutableLiveData<List<Favorite>> get() = _favoriteAllData
+//    private val _favoriteAllData = LiveData<Favorite>()
+//    val favoriteAllData : LiveData<List<Favorite>> get() = _favoriteAllData
 
     override fun onLoadSearchSingleQuizData(id: Int) {
         addDisposable(remoteService.requestSearchSingeQuiz(id = id)
@@ -54,15 +55,25 @@ class MainViewModel(private val remoteService: RemoteService,
 
     }
 
-    override fun onLoadFavoriteData() {
-        addDisposable(localFavoriteRepoService.getAllFavorite()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _favoriteAllData.value = it
-            }, {
+    private val favoriteData: LiveData<Favorite> by lazy {
+        localFavoriteRepoService.getAllFavorite()
+    }
 
-            }))
+    override fun onLoadLiveFavoriteData() : LiveData<Favorite> {
+        return favoriteData
+    }
+
+
+
+    override fun onLoadFavoriteData() {
+//        addDisposable(localFavoriteRepoService.getAllFavorite()
+//            .subscribeOn(Schedulers.io())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe({
+////                _favoriteAllData.value = it
+//            }, {
+//
+//            }))
     }
 
     override fun disposableClear() {
