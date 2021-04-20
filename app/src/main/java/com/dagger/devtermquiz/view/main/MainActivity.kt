@@ -15,6 +15,7 @@ import com.dagger.devtermquiz.ext.gone
 import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.ext.toast
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
+import com.dagger.devtermquiz.model.favorite.Favorite
 import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.model.MainViewModel
@@ -43,6 +44,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     private  val utility         : Utility          by inject()
     private  val doubleBackPress : DoubleBackPress  by inject()
 
+    var totalCountQuestion = Prefs.getInt(Constants.PREFS_TOTAL_QUESTION_COUNT, 1)
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
     lateinit var expandList: Array<ExpandableLayout>
@@ -59,6 +61,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
         override fun onMenuItemClick(position: Int): Boolean {
             toast("menu click :: $position")
+            when (position) {
+                0 -> {
+
+                }
+                1 -> {
+
+                }
+            }
             return true
         }
 
@@ -89,7 +99,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
         // 00시 된 후 실행했을때
         if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
-            // Add Logic
             Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
             Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
         }else {
@@ -114,12 +123,26 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     }
 
     override fun onProcess() {
-        viewModel.onLoadSearchSingleQuizData(id = todayCountQuestion)
+        viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
 
         viewModel.searchSingleQuizData.observe(this@MainActivity, Observer {
-            for (i in expandList.indices) {
+            viewModel.onInsertFavoriteData(Favorite(
+                question = it.question,
+                answer = it.answer,
+                firstExample = it.firstExample,
+                secondExample = it.secondExample,
+                thirdExample = it.thirdExample,
+                fourthExample = it.fourthExample,
+                firstCommentary = it.firstCommentary,
+                secondCommentary = it.secondCommentary,
+                thirdCommentary = it.thirdCommentary,
+                fourthCommentary = it.fourthCommentary
+            ))
 
+
+            for (i in expandList.indices) {
                 if (i == it.answer) {
+                    // 정답 맞췄을때
                     expandList[i].parentLayout.setOnClickListener {
                         btn_next.show()
 
@@ -232,13 +255,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     @SuppressLint("SetTextI18n")
     fun onRepeatRequestSingleQuizData() {
         todayCountQuestion++
+        totalCountQuestion++
+
+        viewModel.favoriteAllData.observe(this@MainActivity, Observer {
+            Logger.d("DB ISERT RESULT :: $it")
+        })
 
         btn_next.gone()
         allExpandableLayoutCollapse()
-        viewModel.onLoadSearchSingleQuizData(id = todayCountQuestion)
+        viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
         Prefs.putInt(Constants.PREFS_QUESTION_COUNT, todayCountQuestion)
-        txt_question_count.text = "$todayCountQuestion / 10"
+        Prefs.putInt(Constants.PREFS_TOTAL_QUESTION_COUNT, totalCountQuestion)
 
+        txt_question_count.text = "$todayCountQuestion / 10"
     }
 
     /**

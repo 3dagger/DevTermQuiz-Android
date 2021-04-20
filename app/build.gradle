@@ -140,8 +140,11 @@ dependencies {
     // Floating Action Button - https://github.com/markormesher/android-fab
     implementation 'uk.co.markormesher:android-fab:2.5.0'
 
-    // Fab - https://github.com/Krupen/FabulousFilter
-    implementation 'com.allattentionhere:fabulousfilter:0.0.5'
+    // Kotlin Room - https://developer.android.com/training/data-storage/room?hl=ko
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    // For Java use annotationProcessor instead of kapt
+    implementation "androidx.room:room-rxjava3:2.3.0-rc01"
 
     // Aweseome Dialog 2 - https://github.com/blennerSilva/AwesomeDialog
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.5'
