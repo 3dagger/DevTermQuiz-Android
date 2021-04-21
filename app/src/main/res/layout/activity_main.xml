@@ -19,29 +19,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#5db7d7">
 
-        <TextView
-            android:id="@+id/txt_today_quota"
-            android:text="오늘의 할당량"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:gravity="center"
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/slTop"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            app:scale_base_width="720"
+            app:scale_base_height="350">
 
-        <TextView
-            android:id="@+id/txt_question_count"
-            android:layout_below="@id/txt_today_quota"
-            android:onClick="@{() -> activity.onLoadNowDate()}"
-            android:textColor="#000000"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="40dp"
-            />
+
 
         <Button
             android:id="@+id/btn_next"
@@ -54,97 +42,192 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-<!--        <Button-->
-<!--            android:id="@+id/btn_sample"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="Sample"-->
-<!--            android:textColor="#FFFFFF"-->
-<!--            android:background="#000000"/>-->
-
-
-
         <TextView
             android:id="@+id/txt_question"
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/txt_question_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:textColor="#FFFFFF"
-            android:textSize="30dp"
             android:textStyle="bold"
-            tools:text="@{vm.searchSingleQuizData.question}" />
+            android:text="@{vm.searchSingleQuizData.question}"
+            app:scale_height="180"
+            app:scale_left="40"
+            app:scale_textsize="45"
+            app:scale_top="80"
+            app:scale_width="650"
+             />
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/txt_question"
+            android:layout_below="@id/slTop"
+            android:background="@drawable/rounded_question_background"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.skydoves.expandablelayout.ExpandableLayout
-                    android:id="@+id/expandable1"
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:id="@+id/slBottom"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    app:expandable_animation="bounce"
-                    app:expandable_duration="300"
-                    app:expandable_showSpinner="false"
-                    app:expandable_isExpanded="false"
-                    app:expandable_parentLayout="@layout/example_first_view"
-                    app:expandable_secondLayout="@layout/commentary_first_view"
-                    app:expandable_spinner_gravity="end"
-                    app:expandable_spinner_margin="30dp" />
+                    android:layout_height="match_parent"
+                    app:scale_base_width="720"
+                    app:scale_base_height="1250">
 
-                <com.skydoves.expandablelayout.ExpandableLayout
-                    android:id="@+id/expandable2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/expandable1"
-                    android:layout_marginTop="15dp"
-                    app:expandable_animation="bounce"
-                    app:expandable_duration="300"
-                    app:expandable_isExpanded="false"
-                    app:expandable_parentLayout="@layout/example_second_view"
-                    app:expandable_secondLayout="@layout/commentary_second_view"
-                    app:expandable_showSpinner="false"
-                    app:expandable_spinner_gravity="end"
-                    app:expandable_spinner_margin="30dp" />
+                    <TextView
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="오늘의 퀴즈"
+                        app:scale_height="40"
+                        app:scale_left="40"
+                        app:scale_textsize="25"
+                        app:scale_top="20"
+                        app:scale_width="650"
+                        />
 
-                <com.skydoves.expandablelayout.ExpandableLayout
-                    android:id="@+id/expandable3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/expandable2"
-                    android:layout_marginTop="15dp"
-                    app:expandable_animation="bounce"
-                    app:expandable_duration="300"
-                    app:expandable_isExpanded="false"
-                    app:expandable_parentLayout="@layout/example_third_view"
-                    app:expandable_secondLayout="@layout/commentary_third_view"
-                    app:expandable_showSpinner="false"
-                    app:expandable_spinner_gravity="end"
-                    app:expandable_spinner_margin="30dp" />
+                    <TextView
+                        android:id="@+id/txt_question_count"
+                        android:onClick="@{() -> activity.onLoadNowDate()}"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="1 / 10"
+                        app:scale_height="60"
+                        app:scale_left="40"
+                        app:scale_textsize="45"
+                        app:scale_top="60"
+                        app:scale_width="650"
+                        />
 
-                <com.skydoves.expandablelayout.ExpandableLayout
-                    android:id="@+id/expandable4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/expandable3"
-                    android:layout_marginTop="15dp"
-                    app:expandable_animation="bounce"
-                    app:expandable_duration="300"
-                    app:expandable_isExpanded="false"
-                    app:expandable_parentLayout="@layout/example_fourth_view"
-                    app:expandable_secondLayout="@layout/commentary_fourth_view"
-                    app:expandable_showSpinner="false"
-                    app:expandable_spinner_gravity="end"
-                    app:expandable_spinner_margin="30dp" />
+                    <Button
+                        android:id="@+id/btn_ex1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:text="@{vm.searchSingleQuizData.firstExample}"
+                        android:fontFamily="@font/notosanskrregular"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="160"
+                        app:scale_width="650"/>
+
+                    <Button
+                        android:id="@+id/btn_ex2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:text="@{vm.searchSingleQuizData.secondExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="310"
+                        app:scale_width="650"/>
+
+                    <Button
+                        android:id="@+id/btn_ex3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:text="@{vm.searchSingleQuizData.thirdExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="460"
+                        app:scale_width="650"/>
+
+                    <Button
+                        android:id="@+id/btn_ex4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textAlignment="center"
+                        android:textColor="#FFFFFF"
+                        android:text="@{vm.searchSingleQuizData.fourthExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="610"
+                        app:scale_width="650"/>
+
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+
+
+
+<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
+<!--                    android:id="@+id/expandable1"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    app:expandable_animation="bounce"-->
+<!--                    app:expandable_duration="300"-->
+<!--                    app:expandable_showSpinner="false"-->
+<!--                    app:expandable_isExpanded="false"-->
+<!--                    app:expandable_parentLayout="@layout/example_first_view"-->
+<!--                    app:expandable_secondLayout="@layout/commentary_first_view"-->
+<!--                    app:expandable_spinner_gravity="end"-->
+<!--                    app:expandable_spinner_margin="30dp" />-->
+
+<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
+<!--                    android:id="@+id/expandable2"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/expandable1"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    app:expandable_animation="bounce"-->
+<!--                    app:expandable_duration="300"-->
+<!--                    app:expandable_isExpanded="false"-->
+<!--                    app:expandable_parentLayout="@layout/example_second_view"-->
+<!--                    app:expandable_secondLayout="@layout/commentary_second_view"-->
+<!--                    app:expandable_showSpinner="false"-->
+<!--                    app:expandable_spinner_gravity="end"-->
+<!--                    app:expandable_spinner_margin="30dp" />-->
+
+<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
+<!--                    android:id="@+id/expandable3"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/expandable2"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    app:expandable_animation="bounce"-->
+<!--                    app:expandable_duration="300"-->
+<!--                    app:expandable_isExpanded="false"-->
+<!--                    app:expandable_parentLayout="@layout/example_third_view"-->
+<!--                    app:expandable_secondLayout="@layout/commentary_third_view"-->
+<!--                    app:expandable_showSpinner="false"-->
+<!--                    app:expandable_spinner_gravity="end"-->
+<!--                    app:expandable_spinner_margin="30dp" />-->
+
+<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
+<!--                    android:id="@+id/expandable4"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_below="@id/expandable3"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    app:expandable_animation="bounce"-->
+<!--                    app:expandable_duration="300"-->
+<!--                    app:expandable_isExpanded="false"-->
+<!--                    app:expandable_parentLayout="@layout/example_fourth_view"-->
+<!--                    app:expandable_secondLayout="@layout/commentary_fourth_view"-->
+<!--                    app:expandable_showSpinner="false"-->
+<!--                    app:expandable_spinner_gravity="end"-->
+<!--                    app:expandable_spinner_margin="30dp" />-->
 
             </RelativeLayout>
 
@@ -156,7 +239,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:buttonBackgroundColour="@color/itemPrimary"
-            app:buttonPosition="bottom|end"
+            app:buttonPosition="top|right"
+            android:visibility="gone"
             />
 
     </RelativeLayout>

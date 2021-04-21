@@ -68,11 +68,11 @@ class Utility(private val context: Context) {
         AwesomeErrorDialog(context)
             .setTitle(title)
             .setMessage(message)
-            .setColoredCircle(R.color.dialogErrorBackgroundColor)
+            .setColoredCircle(R.color.windowBackground)
             .setDialogIconAndColor(R.drawable.ic_dialog_error, R.color.white)
             .setCancelable(cancelable)
-            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
-            .setButtonText(buttonText)
+//            .setButtonBackgroundColor(R.color.dialogErrorBackgroundColor)
+//            .setButtonText(buttonText)
             .show()
     }
 

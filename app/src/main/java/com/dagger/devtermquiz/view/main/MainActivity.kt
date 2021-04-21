@@ -3,6 +3,7 @@ package com.dagger.devtermquiz.view.main
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
@@ -43,7 +44,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     var totalCountQuestion = Prefs.getInt(Constants.PREFS_TOTAL_QUESTION_COUNT, 1)
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
-    lateinit var expandList: Array<ExpandableLayout>
+//    lateinit var expandList: Array<ExpandableLayout>
+    lateinit var buttonList: Array<Button>
     lateinit var progress: CustomProgressDialog
 
     private val fabDialMenuAdapter = object : SpeedDialMenuAdapter() {
@@ -78,7 +80,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun initView() {
         viewModel.setNavigator(this)
 
-        expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
+//        expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
+        buttonList = arrayOf(btn_ex1, btn_ex2, btn_ex3, btn_ex4)
 
         fab.speedDialMenuAdapter = fabDialMenuAdapter
         fab.setContentCoverColour(0xcc8b575c.toInt())
@@ -136,20 +139,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 //            ))
 
 
-            for (i in expandList.indices) {
+            for (i in buttonList.indices) {
                 if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
-                    expandList[i].parentLayout.setOnClickListener {
-                        btn_next.show()
+                    buttonList[i].setOnClickListener {
+
 
                         utility.answerDialog(
                             activity = this@MainActivity,
                             cancelable = false,
                             listener = object : AwesomeDialogListener {
                                 override fun onConfirmClick() {
-                                    expandList[i].expand()
-                                    expandList[i].parentLayout.setBackgroundColor(Color.GREEN)
-                                    afterAnswerQuestion()
+                                    btn_next.show()
                                 }
 
                                 override fun onAddBookMarkClick() {
@@ -166,10 +167,13 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                         fourthCommentary = searchQuiz.fourthCommentary
                                     ))
                                 }
-                            })
+
+                            }
+                        )
                     }
+
                 } else {
-                    expandList[i].parentLayout.setOnClickListener {
+                    buttonList[i].setOnClickListener {
                         utility.wrongAnswerDialog(
                             context = this@MainActivity,
                             title = "오답입니다.",
@@ -194,68 +198,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                     })
             }
 
-
-            expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = searchQuiz.firstExample
-            expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = searchQuiz.firstCommentary
-
-            expandable2.parentLayout.findViewById<TextView>(R.id.firstExample2).text = searchQuiz.secondExample
-            expandable2.secondLayout.findViewById<TextView>(R.id.txt_commentary_2).text = searchQuiz.secondCommentary
-
-            expandable3.parentLayout.findViewById<TextView>(R.id.firstExample3).text = searchQuiz.thirdExample
-            expandable3.secondLayout.findViewById<TextView>(R.id.txt_commentary_3).text = searchQuiz.thirdCommentary
-
-            expandable4.parentLayout.findViewById<TextView>(R.id.firstExample4).text = searchQuiz.fourthExample
-            expandable4.secondLayout.findViewById<TextView>(R.id.txt_commentary_4).text = searchQuiz.fourthCommentary
-
         })
-
-    }
-
-    private fun afterAnswerQuestion() {
-        for(i in expandList.indices) {
-            expandList[i].showSpinner = true
-            expandList[i].parentLayout.setOnClickListener {
-                if(!expandList[i].isExpanded) {
-                    expandList[i].expand()
-                } else {
-                    expandList[i].collapse()
-                }
-                expandList[i].secondLayout.setOnClickListener {
-                    if(!expandList[i].isExpanded) {
-                        expandList[i].expand()
-                    } else {
-                        expandList[i].collapse()
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @author : 이수현
-     * @Date : 4/19/21 3:54 PM
-     * @Description : 정답 후 ExpandalbeLayout Collapse
-     * @History :
-     *
-     **/
-    private fun allExpandableLayoutCollapse() {
-        expandable1.apply {
-            collapse()
-            parentLayout.setBackgroundColor(Color.WHITE)
-        }
-        expandable2.apply {
-            collapse()
-            parentLayout.setBackgroundColor(Color.WHITE)
-        }
-        expandable3.apply {
-            collapse()
-            parentLayout.setBackgroundColor(Color.WHITE)
-        }
-        expandable4.apply {
-            collapse()
-            parentLayout.setBackgroundColor(Color.WHITE)
-        }
-
 
     }
 
@@ -268,6 +211,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
      **/
     @SuppressLint("SetTextI18n")
     fun onRepeatRequestSingleQuizData() {
+        progress.show()
         todayCountQuestion++
         totalCountQuestion++
 
@@ -276,7 +220,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 //        })
 
         btn_next.gone()
-        allExpandableLayoutCollapse()
         viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
         Prefs.putInt(Constants.PREFS_QUESTION_COUNT, todayCountQuestion)
         Prefs.putInt(Constants.PREFS_TOTAL_QUESTION_COUNT, totalCountQuestion)

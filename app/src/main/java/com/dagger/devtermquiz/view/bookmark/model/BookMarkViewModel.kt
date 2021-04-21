@@ -29,17 +29,10 @@ class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoS
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ allFavoriteData ->
-                Logger.d(allFavoriteData)
                 _allFavoriteData.value = allFavoriteData
             },{
 
             }))
-//            .subscribeOn(Schedulers.io())
-//            .observeOn(AndroidSchedulers.mainThread())
-//            .subscribe({
-//            }, {
-//
-//            }))
     }
 
 

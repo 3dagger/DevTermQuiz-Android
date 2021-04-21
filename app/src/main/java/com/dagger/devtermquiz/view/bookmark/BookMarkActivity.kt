@@ -20,11 +20,14 @@ class BookMarkActivity : BaseActivity<ActivityBookmarkBinding, BookMarkViewModel
 
     override fun onProcess() {
         viewModel.onLoadLiveFavoriteData().observe(this@BookMarkActivity, Observer {
-            Logger.d("DB INSERT RESULT :: $it")
+//            Logger.d("DB INSERT RESULT :: $it")
         })
 
         viewModel.onLoadAllFavoriteData()
-//        Logger.d("--\n${viewModel.onLoadLiveFavoriteData()}\n--")
+        viewModel.allFavoriteData.observe(this@BookMarkActivity, Observer {
+            Logger.d("it.size :: ${it.size}")
+            Logger.d("it.size :: ${it[0].answer}")
+        })
 
 
     }
