@@ -4,36 +4,32 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.widget.TextView
-import androidx.core.view.isVisible
-import androidx.core.view.size
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.databinding.ActivityMainBinding
 import com.dagger.devtermquiz.ext.gone
+import com.dagger.devtermquiz.ext.openActivity
 import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.ext.toast
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
-import com.dagger.devtermquiz.model.favorite.Favorite
+import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
+import com.dagger.devtermquiz.view.bookmark.BookMarkActivity
 import com.dagger.devtermquiz.view.main.model.MainViewModel
 import com.example.awesomedialog.*
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
-import com.orhanobut.logger.Logger
 import com.pixplicity.easyprefs.library.Prefs
-import com.skydoves.expandablelayout.ExpandableAnimation
 import com.skydoves.expandablelayout.ExpandableLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.example_first_view.view.*
 import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.question_item.*
 import org.koin.android.ext.android.inject
-import org.w3c.dom.Text
 import uk.co.markormesher.android_fab.SpeedDialMenuAdapter
 import uk.co.markormesher.android_fab.SpeedDialMenuItem
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -63,7 +59,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             toast("menu click :: $position")
             when (position) {
                 0 -> {
-
+                    openActivity(BookMarkActivity::class.java)
                 }
                 1 -> {
 
@@ -125,23 +121,23 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun onProcess() {
         viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
 
-        viewModel.searchSingleQuizData.observe(this@MainActivity, Observer {
-            viewModel.onInsertFavoriteData(Favorite(
-                question = it.question,
-                answer = it.answer,
-                firstExample = it.firstExample,
-                secondExample = it.secondExample,
-                thirdExample = it.thirdExample,
-                fourthExample = it.fourthExample,
-                firstCommentary = it.firstCommentary,
-                secondCommentary = it.secondCommentary,
-                thirdCommentary = it.thirdCommentary,
-                fourthCommentary = it.fourthCommentary
-            ))
+        viewModel.searchSingleQuizData.observe(this@MainActivity, Observer { searchQuiz ->
+//            viewModel.onInsertFavoriteData(Favorite(
+//                question = it.question,
+//                answer = it.answer,
+//                firstExample = it.firstExample,
+//                secondExample = it.secondExample,
+//                thirdExample = it.thirdExample,
+//                fourthExample = it.fourthExample,
+//                firstCommentary = it.firstCommentary,
+//                secondCommentary = it.secondCommentary,
+//                thirdCommentary = it.thirdCommentary,
+//                fourthCommentary = it.fourthCommentary
+//            ))
 
 
             for (i in expandList.indices) {
-                if (i == it.answer) {
+                if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
                     expandList[i].parentLayout.setOnClickListener {
                         btn_next.show()
@@ -154,6 +150,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                     expandList[i].expand()
                                     expandList[i].parentLayout.setBackgroundColor(Color.GREEN)
                                     afterAnswerQuestion()
+                                }
+
+                                override fun onAddBookMarkClick() {
+                                    viewModel.onInsertFavoriteData(Favorite(
+                                        question =  searchQuiz.question,
+                                        answer =  searchQuiz.answer,
+                                        firstExample = searchQuiz.firstExample,
+                                        secondExample = searchQuiz.secondExample,
+                                        thirdExample = searchQuiz.thirdExample,
+                                        fourthExample = searchQuiz.fourthExample,
+                                        firstCommentary = searchQuiz.firstCommentary,
+                                        secondCommentary = searchQuiz.secondCommentary,
+                                        thirdCommentary = searchQuiz.thirdCommentary,
+                                        fourthCommentary = searchQuiz.fourthCommentary
+                                    ))
                                 }
                             })
                     }
@@ -177,21 +188,24 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                     listener = object : AwesomeDialogListener {
                         override fun onConfirmClick() {
                         }
+
+                        override fun onAddBookMarkClick() {
+                        }
                     })
             }
 
 
-            expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = it.firstExample
-            expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = it.firstCommentary
+            expandable1.parentLayout.findViewById<TextView>(R.id.firstExample).text = searchQuiz.firstExample
+            expandable1.secondLayout.findViewById<TextView>(R.id.txt_commentary_1).text = searchQuiz.firstCommentary
 
-            expandable2.parentLayout.findViewById<TextView>(R.id.firstExample2).text = it.secondExample
-            expandable2.secondLayout.findViewById<TextView>(R.id.txt_commentary_2).text = it.secondCommentary
+            expandable2.parentLayout.findViewById<TextView>(R.id.firstExample2).text = searchQuiz.secondExample
+            expandable2.secondLayout.findViewById<TextView>(R.id.txt_commentary_2).text = searchQuiz.secondCommentary
 
-            expandable3.parentLayout.findViewById<TextView>(R.id.firstExample3).text = it.thirdExample
-            expandable3.secondLayout.findViewById<TextView>(R.id.txt_commentary_3).text = it.thirdCommentary
+            expandable3.parentLayout.findViewById<TextView>(R.id.firstExample3).text = searchQuiz.thirdExample
+            expandable3.secondLayout.findViewById<TextView>(R.id.txt_commentary_3).text = searchQuiz.thirdCommentary
 
-            expandable4.parentLayout.findViewById<TextView>(R.id.firstExample4).text = it.fourthExample
-            expandable4.secondLayout.findViewById<TextView>(R.id.txt_commentary_4).text = it.fourthCommentary
+            expandable4.parentLayout.findViewById<TextView>(R.id.firstExample4).text = searchQuiz.fourthExample
+            expandable4.secondLayout.findViewById<TextView>(R.id.txt_commentary_4).text = searchQuiz.fourthCommentary
 
         })
 
@@ -257,12 +271,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         todayCountQuestion++
         totalCountQuestion++
 
-//        viewModel.favoriteAllData.observe(this@MainActivity, Observer {
-//            Logger.d("DB ISERT RESULT :: $it")
+//        viewModel.onLoadLiveFavoriteData().observe(this@MainActivity, Observer {
+//            Logger.d("DB INSERT RESULT :: $it")
 //        })
-        viewModel.onLoadLiveFavoriteData().observe(this@MainActivity, Observer {
-            Logger.d("DB INSERT RESULT :: $it")
-        })
 
         btn_next.gone()
         allExpandableLayoutCollapse()
@@ -281,7 +292,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
      *
      **/
     override fun onExhaustQuiz() {
-        utility.exhaustQuestionDialog(activity = this@MainActivity, cancelabel = false)
+        utility.exhaustQuestionDialog(activity = this@MainActivity, cancelabel = true)
     }
 
     override fun onBackPressed() {

@@ -1,4 +1,4 @@
-package com.dagger.devtermquiz.model.favorite
+package com.dagger.devtermquiz.model.fav
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

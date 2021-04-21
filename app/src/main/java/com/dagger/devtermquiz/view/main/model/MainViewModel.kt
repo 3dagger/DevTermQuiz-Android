@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import com.dagger.devtermquiz.ResponseCode
 import com.dagger.devtermquiz.base.BaseViewModel
 import com.dagger.devtermquiz.model.django.quiz.SearchQuiz
-import com.dagger.devtermquiz.model.favorite.Favorite
+import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.repository.local.favorite.LocalFavoriteRepoService
 import com.dagger.devtermquiz.repository.remote.RemoteService
 import com.dagger.devtermquiz.view.main.MainNavigator
 import com.orhanobut.logger.Logger
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Observable
-import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class MainViewModel(private val remoteService: RemoteService,
                     private val localFavoriteRepoService: LocalFavoriteRepoService) : BaseViewModel<MainNavigator.View>(), MainNavigator.ViewModel{

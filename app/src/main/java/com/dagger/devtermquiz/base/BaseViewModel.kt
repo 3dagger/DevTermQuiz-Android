@@ -2,8 +2,8 @@ package com.dagger.devtermquiz.base
 
 import android.os.Handler
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.disposables.Disposable
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import java.lang.ref.WeakReference
 
 open class BaseViewModel<N> : ViewModel() {

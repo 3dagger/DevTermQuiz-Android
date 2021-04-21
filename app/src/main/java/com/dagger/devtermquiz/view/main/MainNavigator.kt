@@ -1,7 +1,7 @@
 package com.dagger.devtermquiz.view.main
 
 import androidx.lifecycle.LiveData
-import com.dagger.devtermquiz.model.favorite.Favorite
+import com.dagger.devtermquiz.model.fav.Favorite
 
 interface MainNavigator {
     interface View{

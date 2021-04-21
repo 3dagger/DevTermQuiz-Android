@@ -36,6 +36,7 @@ class Utility(private val context: Context) {
                 listener.onConfirmClick()
             }
             .onNegative("즐겨찾기에 추가하기") {
+                listener.onAddBookMarkClick()
 
             }
             .position(AwesomeDialog.POSITIONS.CENTER)

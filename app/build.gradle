@@ -67,7 +67,8 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // RetroFit2 - RxJava Adapter : https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-290-2020-05-20
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+//    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // OkHttp3 : https://square.github.io/okhttp/
     implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
@@ -93,9 +94,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
 
     // RxJava3 : https://github.com/ReactiveX/RxKotlin
-    implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
-    implementation "io.reactivex.rxjava3:rxkotlin:$rxjava_version"
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+//    implementation "io.reactivex.rxjava3:rxjava:$rxjava_version"
+//    implementation "io.reactivex.rxjava3:rxkotlin:$rxjava_version"
+//    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.4"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.0"
 
     // ScalableLayout : https://github.com/ssomai/ScalableLayout/blob/master/README_ko.md
     implementation "com.ssomai:android.scalablelayout:$scalable_version"
@@ -141,10 +144,11 @@ dependencies {
     implementation 'uk.co.markormesher:android-fab:2.5.0'
 
     // Kotlin Room - https://developer.android.com/training/data-storage/room?hl=ko
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:2.2.3"
+    kapt "androidx.room:room-compiler:2.2.3"
     // For Java use annotationProcessor instead of kapt
-    implementation "androidx.room:room-rxjava3:2.3.0-rc01"
+//    implementation "androidx.room:room-rxjava3:2.3.0-rc01"
+    implementation "androidx.room:room-rxjava2:2.2.3"
 
     // Aweseome Dialog 2 - https://github.com/blennerSilva/AwesomeDialog
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.5'

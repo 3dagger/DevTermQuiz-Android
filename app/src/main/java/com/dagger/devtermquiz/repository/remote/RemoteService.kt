@@ -3,7 +3,7 @@ package com.dagger.devtermquiz.repository.remote
 import com.dagger.devtermquiz.ApiData
 import com.dagger.devtermquiz.model.django.quiz.SearchQuiz
 import com.dagger.devtermquiz.model.django.quiz.SingleQuiz
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

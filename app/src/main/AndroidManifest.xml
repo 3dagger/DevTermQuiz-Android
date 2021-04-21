@@ -26,6 +26,10 @@
         <activity
             android:name=".view.main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.bookmark.BookMarkActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>
