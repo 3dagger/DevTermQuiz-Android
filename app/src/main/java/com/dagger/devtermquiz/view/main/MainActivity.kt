@@ -156,6 +156,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                 override fun onAddBookMarkClick() {
                                     viewModel.onInsertFavoriteData(Favorite(
                                         question =  searchQuiz.question,
+                                        id = searchQuiz.id,
                                         answer =  searchQuiz.answer,
                                         firstExample = searchQuiz.firstExample,
                                         secondExample = searchQuiz.secondExample,
@@ -167,7 +168,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                         fourthCommentary = searchQuiz.fourthCommentary
                                     ))
                                 }
-
                             }
                         )
                     }
@@ -225,6 +225,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         Prefs.putInt(Constants.PREFS_TOTAL_QUESTION_COUNT, totalCountQuestion)
 
         txt_question_count.text = "$todayCountQuestion / 10"
+    }
+
+    fun onMoveBookMarkActivity() {
+        openActivity(BookMarkActivity::class.java)
     }
 
     /**

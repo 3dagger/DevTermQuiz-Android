@@ -107,6 +107,16 @@
                         app:scale_width="650"
                         />
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_book"
+                        android:onClick="@{() -> activity.onMoveBookMarkActivity()}"
+                        app:scale_height="60"
+                        app:scale_left="570"
+                        app:scale_top="60"
+                        app:scale_width="100"/>
+
                     <Button
                         android:id="@+id/btn_ex1"
                         android:layout_width="wrap_content"

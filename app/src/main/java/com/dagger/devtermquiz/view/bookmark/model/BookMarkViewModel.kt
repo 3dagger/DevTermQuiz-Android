@@ -7,6 +7,7 @@ import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.repository.local.favorite.LocalFavoriteRepoService
 import com.dagger.devtermquiz.view.bookmark.BookMarkNavigator
 import com.orhanobut.logger.Logger
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -33,6 +34,13 @@ class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoS
             },{
 
             }))
+    }
+
+    fun onDeleteById(id: Int) {
+        addDisposable(Observable.fromCallable{ localFavoriteRepoService.deleteById(id)}
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {  })
     }
 
 

@@ -30,6 +30,10 @@
             android:name=".view.bookmark.BookMarkActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.bookmark.detail.DetailBookMarkActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

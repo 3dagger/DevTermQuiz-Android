@@ -1,6 +1,7 @@
 package com.dagger.devtermquiz.base
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -18,6 +19,11 @@ abstract class BaseActivity<T : ViewDataBinding, R : BaseViewModel<*>> : AppComp
         super.onCreate(savedInstanceState)
 
         viewDataBinding = DataBindingUtil.setContentView(this, layoutResourceId)
+
+        val window = window
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
         initView()
 

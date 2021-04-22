@@ -1,12 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+            name="activity"
+            type="com.dagger.devtermquiz.view.bookmark.BookMarkActivity" />
+
+        <variable
+            name="vm"
+            type="com.dagger.devtermquiz.view.bookmark.model.BookMarkViewModel" />
+
+        <variable
+            name="itemClickListener"
+            type="com.dagger.devtermquiz.listener.RecyclerViewItemClickListener"/>
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF">
+        android:background="#00020c">
 
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/top_sl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            app:scale_base_height="100"
+            app:scale_base_width="720">
 
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_below="@id/top_sl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            addItems="@{vm.allFavoriteData}"
+            itemClick="@{itemClickListener}"
+            />
 
     </RelativeLayout>
 
