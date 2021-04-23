@@ -149,5 +149,8 @@ dependencies {
     // Aweseome Dialog 2 - https://github.com/blennerSilva/AwesomeDialog
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.5'
 
+    // SmoothBottomBar - https://github.com/ibrahimsn98/SmoothBottomBar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
+
 
 }

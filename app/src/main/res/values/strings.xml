@@ -2,5 +2,5 @@
     <string name="app_name">DevTermQuiz</string>
 
     <string name="str_double_back_press">뒤로가기키를 한번더 누르면 종료됩니다.</string>
-    <string name="str_next">다음</string>
+    <string name="str_next">다음 문제</string>
 </resources>

@@ -5,6 +5,7 @@ import android.content.Context
 import android.graphics.Color
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
@@ -25,7 +26,6 @@ import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.pixplicity.easyprefs.library.Prefs
 import com.skydoves.expandablelayout.ExpandableLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.example_first_view.view.*
 import kotlinx.android.synthetic.main.loading_view.*
 import kotlinx.android.synthetic.main.question_item.*
 import org.koin.android.ext.android.inject
@@ -72,19 +72,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     }
 
-    fun onLoadNowDate() {
-//        Logger.d(Prefs.getString(Constants.PREFS_NOW_STRING, ""))
-        Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY , false)
-    }
-
     override fun initView() {
         viewModel.setNavigator(this)
 
-//        expandList = arrayOf(expandable1, expandable2, expandable3, expandable4)
         buttonList = arrayOf(btn_ex1, btn_ex2, btn_ex3, btn_ex4)
 
         fab.speedDialMenuAdapter = fabDialMenuAdapter
         fab.setContentCoverColour(0xcc8b575c.toInt())
+
+        doubleBackPress.setDoubleBackPressAction { finishAffinity() }
 
         // 최초 접속
         if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
@@ -92,9 +88,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY, false)
             Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
         }
-
-        doubleBackPress.setDoubleBackPressAction { finishAffinity() }
-
 
         // 00시 된 후 실행했을때
         if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
@@ -125,32 +118,19 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
 
         viewModel.searchSingleQuizData.observe(this@MainActivity, Observer { searchQuiz ->
-//            viewModel.onInsertFavoriteData(Favorite(
-//                question = it.question,
-//                answer = it.answer,
-//                firstExample = it.firstExample,
-//                secondExample = it.secondExample,
-//                thirdExample = it.thirdExample,
-//                fourthExample = it.fourthExample,
-//                firstCommentary = it.firstCommentary,
-//                secondCommentary = it.secondCommentary,
-//                thirdCommentary = it.thirdCommentary,
-//                fourthCommentary = it.fourthCommentary
-//            ))
-
-
             for (i in buttonList.indices) {
+                buttonList[i].background = ContextCompat.getDrawable(this, R.drawable.book_mark_detail_background)
                 if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
                     buttonList[i].setOnClickListener {
-
-
+                        buttonList[i].background = ContextCompat.getDrawable(this, R.drawable.book_mark_detail_answer_background)
                         utility.answerDialog(
                             activity = this@MainActivity,
                             cancelable = false,
                             listener = object : AwesomeDialogListener {
                                 override fun onConfirmClick() {
                                     btn_next.show()
+                                    slRealBottom.show()
                                 }
 
                                 override fun onAddBookMarkClick() {
@@ -167,6 +147,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                         thirdCommentary = searchQuiz.thirdCommentary,
                                         fourthCommentary = searchQuiz.fourthCommentary
                                     ))
+                                    btn_next.show()
                                 }
                             }
                         )
@@ -215,11 +196,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         todayCountQuestion++
         totalCountQuestion++
 
-//        viewModel.onLoadLiveFavoriteData().observe(this@MainActivity, Observer {
-//            Logger.d("DB INSERT RESULT :: $it")
-//        })
-
         btn_next.gone()
+        slRealBottom.gone()
+
         viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
         Prefs.putInt(Constants.PREFS_QUESTION_COUNT, todayCountQuestion)
         Prefs.putInt(Constants.PREFS_TOTAL_QUESTION_COUNT, totalCountQuestion)

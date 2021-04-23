@@ -29,18 +29,21 @@
             app:scale_base_width="720"
             app:scale_base_height="350">
 
-
-
         <Button
             android:id="@+id/btn_next"
-            android:visibility="gone"
             android:textStyle="bold"
             android:text="@string/str_next"
             android:onClick="@{() -> activity.onRepeatRequestSingleQuizData()}"
             android:textColor="#FFFFFF"
-            android:background="#000000"
+            android:background="#00000000"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:scale_height="80"
+            app:scale_left="450"
+            app:scale_textsize="45"
+            app:scale_top="260"
+            app:scale_width="210"/>
 
         <TextView
             android:id="@+id/txt_question"
@@ -50,10 +53,10 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:text="@{vm.searchSingleQuizData.question}"
-            app:scale_height="180"
+            app:scale_height="200"
             app:scale_left="40"
             app:scale_textsize="45"
-            app:scale_top="80"
+            app:scale_top="100"
             app:scale_width="650"
              />
 
@@ -75,13 +78,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:scale_base_width="720"
-                    app:scale_base_height="1250">
+                    app:scale_base_height="950">
 
                     <TextView
                         android:textColor="#FFFFFF"
                         android:gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:textStyle="bold"
                         android:text="오늘의 퀴즈"
                         app:scale_height="40"
@@ -93,7 +96,6 @@
 
                     <TextView
                         android:id="@+id/txt_question_count"
-                        android:onClick="@{() -> activity.onLoadNowDate()}"
                         android:textColor="#FFFFFF"
                         android:gravity="center"
                         android:layout_width="match_parent"
@@ -115,7 +117,7 @@
                         app:scale_height="60"
                         app:scale_left="570"
                         app:scale_top="60"
-                        app:scale_width="100"/>
+                        app:scale_width="70"/>
 
                     <Button
                         android:id="@+id/btn_ex1"
@@ -129,7 +131,7 @@
                         app:scale_height="130"
                         app:scale_left="40"
                         app:scale_textsize="30"
-                        app:scale_top="160"
+                        app:scale_top="210"
                         app:scale_width="650"/>
 
                     <Button
@@ -143,7 +145,7 @@
                         app:scale_height="130"
                         app:scale_left="40"
                         app:scale_textsize="30"
-                        app:scale_top="310"
+                        app:scale_top="360"
                         app:scale_width="650"/>
 
                     <Button
@@ -157,7 +159,7 @@
                         app:scale_height="130"
                         app:scale_left="40"
                         app:scale_textsize="30"
-                        app:scale_top="460"
+                        app:scale_top="510"
                         app:scale_width="650"/>
 
                     <Button
@@ -171,74 +173,73 @@
                         app:scale_height="130"
                         app:scale_left="40"
                         app:scale_textsize="30"
-                        app:scale_top="610"
+                        app:scale_top="660"
                         app:scale_width="650"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FFFFFF"
+                        android:visibility="gone"
+                        app:scale_height="1"
+                        app:scale_width="650"
+                        app:scale_left="40"
+                        app:scale_top="770"
+                        />
 
                 </com.ssomai.android.scalablelayout.ScalableLayout>
 
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:id="@+id/slRealBottom"
+                    android:visibility="gone"
+                    android:layout_below="@id/slBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:scale_base_width="720"
+                    app:scale_base_height="1550">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/book_mark_detail_background"
+                        app:scale_height="1200"
+                        app:scale_width="650"
+                        app:scale_left="40"
+                        app:scale_top="10"/>
+
+                    <TextView
+                        android:text="해설"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanskrbold"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        app:scale_height="80"
+                        app:scale_left="40"
+                        app:scale_textsize="35"
+                        app:scale_top="30"
+                        app:scale_width="650" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/notosanskrbold"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        app:scale_height="780"
+                        app:scale_left="40"
+                        app:scale_textsize="35"
+                        app:scale_top="120"
+                        app:scale_width="650" />
 
 
 
 
-<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
-<!--                    android:id="@+id/expandable1"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    app:expandable_animation="bounce"-->
-<!--                    app:expandable_duration="300"-->
-<!--                    app:expandable_showSpinner="false"-->
-<!--                    app:expandable_isExpanded="false"-->
-<!--                    app:expandable_parentLayout="@layout/example_first_view"-->
-<!--                    app:expandable_secondLayout="@layout/commentary_first_view"-->
-<!--                    app:expandable_spinner_gravity="end"-->
-<!--                    app:expandable_spinner_margin="30dp" />-->
 
-<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
-<!--                    android:id="@+id/expandable2"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/expandable1"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    app:expandable_animation="bounce"-->
-<!--                    app:expandable_duration="300"-->
-<!--                    app:expandable_isExpanded="false"-->
-<!--                    app:expandable_parentLayout="@layout/example_second_view"-->
-<!--                    app:expandable_secondLayout="@layout/commentary_second_view"-->
-<!--                    app:expandable_showSpinner="false"-->
-<!--                    app:expandable_spinner_gravity="end"-->
-<!--                    app:expandable_spinner_margin="30dp" />-->
 
-<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
-<!--                    android:id="@+id/expandable3"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/expandable2"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    app:expandable_animation="bounce"-->
-<!--                    app:expandable_duration="300"-->
-<!--                    app:expandable_isExpanded="false"-->
-<!--                    app:expandable_parentLayout="@layout/example_third_view"-->
-<!--                    app:expandable_secondLayout="@layout/commentary_third_view"-->
-<!--                    app:expandable_showSpinner="false"-->
-<!--                    app:expandable_spinner_gravity="end"-->
-<!--                    app:expandable_spinner_margin="30dp" />-->
 
-<!--                <com.skydoves.expandablelayout.ExpandableLayout-->
-<!--                    android:id="@+id/expandable4"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_below="@id/expandable3"-->
-<!--                    android:layout_marginTop="15dp"-->
-<!--                    app:expandable_animation="bounce"-->
-<!--                    app:expandable_duration="300"-->
-<!--                    app:expandable_isExpanded="false"-->
-<!--                    app:expandable_parentLayout="@layout/example_fourth_view"-->
-<!--                    app:expandable_secondLayout="@layout/commentary_fourth_view"-->
-<!--                    app:expandable_showSpinner="false"-->
-<!--                    app:expandable_spinner_gravity="end"-->
-<!--                    app:expandable_spinner_margin="30dp" />-->
 
+                </com.ssomai.android.scalablelayout.ScalableLayout>
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -246,11 +247,10 @@
         <uk.co.markormesher.android_fab.FloatingActionButton
             android:id="@+id/fab"
             app:fabSize="mini"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:buttonBackgroundColour="@color/itemPrimary"
-            app:buttonPosition="top|right"
-            android:visibility="gone"
             />
 
     </RelativeLayout>

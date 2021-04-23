@@ -1,10 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:fitsSystemWindows="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.bookmark.detail.DetailBookMarkActivity">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="activity"
+            type="com.dagger.devtermquiz.view.bookmark.detail.DetailBookMarkActivity" />
+        <variable
+            name="vm"
+            type="com.dagger.devtermquiz.view.bookmark.detail.model.DetailBookMarkViewModel" />
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#00020c">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/book_mark_detail_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.ssomai.android.scalablelayout.ScalableLayout
+                    android:id="@+id/slBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:scale_base_width="720"
+                    app:scale_base_height="1550">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="#FFFFFF"
+                        android:gravity="center"
+                        tools:text="@{activity.question}"
+                        app:scale_height="180"
+                        app:scale_left="40"
+                        app:scale_textsize="35"
+                        app:scale_top="30"
+                        app:scale_width="650" />
+
+                    <Button
+                        android:id="@+id/btn_dbm_ex1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textColor="#FFFFFF"
+                        tools:text="@{activity.firstExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="280"
+                        app:scale_width="650"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_dbm_ex2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textColor="#FFFFFF"
+                        tools:text="@{activity.secondExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="450"
+                        app:scale_width="650"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_dbm_ex3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textColor="#FFFFFF"
+                        tools:text="@{activity.thirdExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="620"
+                        app:scale_width="650"
+                        />
+
+                    <Button
+                        android:id="@+id/btn_dbm_ex4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rounded_question_botton_background"
+                        android:textColor="#FFFFFF"
+                        tools:text="@{activity.fourthExample}"
+                        app:scale_height="130"
+                        app:scale_left="40"
+                        app:scale_textsize="30"
+                        app:scale_top="790"
+                        app:scale_width="650"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#FFFFFF"
+                        app:scale_height="1"
+                        app:scale_width="650"
+                        app:scale_left="40"
+                        app:scale_top="990"
+                        />
+
+
+
+                </com.ssomai.android.scalablelayout.ScalableLayout>
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </RelativeLayout>
 
