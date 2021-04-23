@@ -232,13 +232,6 @@
                         app:scale_top="120"
                         app:scale_width="650" />
 
-
-
-
-
-
-
-
                 </com.ssomai.android.scalablelayout.ScalableLayout>
             </RelativeLayout>
 
