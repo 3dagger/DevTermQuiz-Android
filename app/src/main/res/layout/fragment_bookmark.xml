@@ -10,11 +10,11 @@
 
         <variable
             name="activity"
-            type="com.dagger.devtermquiz.view.bookmark.BookMarkActivity" />
+            type="com.dagger.devtermquiz.view.main.bookmark.BookMarkFragment" />
 
         <variable
             name="vm"
-            type="com.dagger.devtermquiz.view.bookmark.model.BookMarkViewModel" />
+            type="com.dagger.devtermquiz.view.main.bookmark.model.BookMarkFragmentViewModel" />
 
         <variable
             name="itemClickListener"
@@ -46,17 +46,17 @@
                 app:scale_top="70"
                 app:scale_width="140" />
 
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#000000"
-                android:onClick="@{() -> activity.finish()}"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"
-                app:scale_height="40"
-                app:scale_left="30"
-                app:scale_top="80"
-                app:scale_width="50"
-                />
+<!--            <ImageButton-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:background="#000000"-->
+<!--                android:onClick="@{() -> activity.finish()}"-->
+<!--                android:src="@drawable/ic_baseline_arrow_back_ios_24"-->
+<!--                app:scale_height="40"-->
+<!--                app:scale_left="30"-->
+<!--                app:scale_top="80"-->
+<!--                app:scale_width="50"-->
+<!--                />-->
 
 
         </com.ssomai.android.scalablelayout.ScalableLayout>

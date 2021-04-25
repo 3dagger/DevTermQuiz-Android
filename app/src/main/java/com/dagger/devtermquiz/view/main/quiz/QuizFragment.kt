@@ -1,86 +1,49 @@
-package com.dagger.devtermquiz.view.main
+package com.dagger.devtermquiz.view.main.quiz
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Color
+import android.os.Bundle
 import android.widget.Button
-import android.widget.TextView
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
-import com.dagger.devtermquiz.base.BaseActivity
-import com.dagger.devtermquiz.databinding.ActivityMainBinding
+import com.dagger.devtermquiz.base.BaseFragment
+import com.dagger.devtermquiz.databinding.FragmentMainBinding
 import com.dagger.devtermquiz.ext.gone
-import com.dagger.devtermquiz.ext.openActivity
 import com.dagger.devtermquiz.ext.show
-import com.dagger.devtermquiz.ext.toast
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
-import com.dagger.devtermquiz.view.bookmark.BookMarkActivity
-import com.dagger.devtermquiz.view.main.model.MainViewModel
-import com.example.awesomedialog.*
+import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.pixplicity.easyprefs.library.Prefs
-import com.skydoves.expandablelayout.ExpandableLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.loading_view.*
-import kotlinx.android.synthetic.main.question_item.*
 import org.koin.android.ext.android.inject
-import uk.co.markormesher.android_fab.SpeedDialMenuAdapter
-import uk.co.markormesher.android_fab.SpeedDialMenuItem
-import java.util.*
 
-
-class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator.View{
-    override val layoutResourceId: Int get() = R.layout.activity_main
-
-    override val viewModel       : MainViewModel    by inject()
-    private  val utility         : Utility          by inject()
-    private  val doubleBackPress : DoubleBackPress  by inject()
+class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
+    QuizFragmentNavigator.View {
+    override val layoutResourceId: Int get() = R.layout.fragment_main
+    override val viewModel: QuizFragmentViewModel by inject()
+    private  val utility         : Utility by inject()
+    private  val doubleBackPress : DoubleBackPress by inject()
 
     var totalCountQuestion = Prefs.getInt(Constants.PREFS_TOTAL_QUESTION_COUNT, 1)
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
-//    lateinit var expandList: Array<ExpandableLayout>
     lateinit var buttonList: Array<Button>
     lateinit var progress: CustomProgressDialog
 
-    private val fabDialMenuAdapter = object : SpeedDialMenuAdapter() {
-        override fun getCount(): Int = 2
-
-        override fun getMenuItem(context: Context, position: Int): SpeedDialMenuItem = when (position) {
-            0 -> SpeedDialMenuItem(context, R.drawable.ic_drawer_icon, "즐겨찾기")
-            1 -> SpeedDialMenuItem(context, R.drawable.ic_arrow_down, "설정")
-            else -> throw IllegalArgumentException("No menu item: $position")
-        }
-
-        override fun onMenuItemClick(position: Int): Boolean {
-            toast("menu click :: $position")
-            when (position) {
-                0 -> {
-                    openActivity(BookMarkActivity::class.java)
-                }
-                1 -> {
-
-                }
-            }
-            return true
-        }
-
-    }
+//    override val bindingVariableVM: Int get() = BR.vm
+//    override val bindingVariableActivity: Int get() = BR.activity
 
     override fun initView() {
         viewModel.setNavigator(this)
 
         buttonList = arrayOf(btn_ex1, btn_ex2, btn_ex3, btn_ex4)
 
-        fab.speedDialMenuAdapter = fabDialMenuAdapter
-        fab.setContentCoverColour(0xcc8b575c.toInt())
-
-        doubleBackPress.setDoubleBackPressAction { finishAffinity() }
+        doubleBackPress.setDoubleBackPressAction { finishAffinity(mActivity) }
 
         // 최초 접속
         if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
@@ -99,15 +62,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         }
 
         progress = CustomProgressDialog(
-            context = this@MainActivity,
+            context = mActivity,
             message = "잠시만 기다려주세요.",
             cancelable = false
         )
         progress.show()
 
         viewDataBinding.run {
-            lifecycleOwner = this@MainActivity
-            activity = this@MainActivity
+            lifecycleOwner = this@QuizFragment
+            activity = this@QuizFragment
             vm = viewModel
         }
 
@@ -117,15 +80,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun onProcess() {
         viewModel.onLoadSearchSingleQuizData(id = totalCountQuestion)
 
-        viewModel.searchSingleQuizData.observe(this@MainActivity, Observer { searchQuiz ->
+        viewModel.searchSingleQuizData.observe(mActivity, Observer { searchQuiz ->
             for (i in buttonList.indices) {
-                buttonList[i].background = ContextCompat.getDrawable(this, R.drawable.book_mark_detail_background)
+                buttonList[i].background = ContextCompat.getDrawable(mActivity, R.drawable.book_mark_detail_background)
                 if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
                     buttonList[i].setOnClickListener {
-                        buttonList[i].background = ContextCompat.getDrawable(this, R.drawable.book_mark_detail_answer_background)
+                        buttonList[i].background = ContextCompat.getDrawable(mActivity, R.drawable.book_mark_detail_answer_background)
                         utility.answerDialog(
-                            activity = this@MainActivity,
+                            activity = mActivity,
                             cancelable = false,
                             listener = object : AwesomeDialogListener {
                                 override fun onConfirmClick() {
@@ -134,7 +97,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                 }
 
                                 override fun onAddBookMarkClick() {
-                                    viewModel.onInsertFavoriteData(Favorite(
+                                    viewModel.onInsertFavoriteData(
+                                        Favorite(
                                         question =  searchQuiz.question,
                                         id = searchQuiz.id,
                                         answer =  searchQuiz.answer,
@@ -146,7 +110,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                                         secondCommentary = searchQuiz.secondCommentary,
                                         thirdCommentary = searchQuiz.thirdCommentary,
                                         fourthCommentary = searchQuiz.fourthCommentary
-                                    ))
+                                    )
+                                    )
                                     btn_next.show()
                                 }
                             }
@@ -156,7 +121,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
                 } else {
                     buttonList[i].setOnClickListener {
                         utility.wrongAnswerDialog(
-                            context = this@MainActivity,
+                            context = mActivity,
                             title = "오답입니다.",
                             cancelable = true,
                             message = "다른 답을 찾아보세요.",
@@ -168,7 +133,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
             if (todayCountQuestion == 10) {
                 utility.answerDialog(
-                    activity = this@MainActivity,
+                    activity = mActivity,
                     cancelable = true,
                     listener = object : AwesomeDialogListener {
                         override fun onConfirmClick() {
@@ -180,7 +145,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             }
 
         })
-
     }
 
     /**
@@ -207,29 +171,30 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     }
 
     fun onMoveBookMarkActivity() {
-        openActivity(BookMarkActivity::class.java)
+//        openActivity(BookMarkActivity::class.java)
     }
 
-    /**
-     * @author : 이수현
-     * @Date : 4/19/21 3:49 PM
-     * @Description : 문제 고갈 시 Dialog
-     * @History :
-     *
-     **/
-    override fun onExhaustQuiz() {
-        utility.exhaustQuestionDialog(activity = this@MainActivity, cancelabel = true)
+    override fun onViewModelCleared() {
+        viewModel.disposableClear()
     }
 
-    override fun onBackPressed() {
-        doubleBackPress.onBackPressed()
+    companion object {
+        fun newInstance(position: Int): QuizFragment {
+            val instance =
+                QuizFragment()
+            val args = Bundle()
+            args.putInt("position", position)
+            instance.arguments = args
+            return instance
+        }
     }
 
     override fun dismissProgress() {
         if(progress.isShowing) progress.dismiss()
     }
 
-    override fun onViewModelCleared() {
-        viewModel.disposableClear()
+    override fun onExhaustQuiz() {
+        utility.exhaustQuestionDialog(activity = mActivity, cancelabel = true)
     }
+
 }

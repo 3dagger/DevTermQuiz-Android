@@ -15,7 +15,7 @@
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".view.splash.SplashActivity"
+            android:name=".view.main.MainViewPagerActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,12 +24,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".view.old.MainActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.bookmark.BookMarkActivity"
-            android:screenOrientation="portrait" />
-
         <activity
             android:name=".view.bookmark.detail.DetailBookMarkActivity"
             android:screenOrientation="portrait" />

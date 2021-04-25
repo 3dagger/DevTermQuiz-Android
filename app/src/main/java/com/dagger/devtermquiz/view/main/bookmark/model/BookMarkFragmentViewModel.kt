@@ -1,18 +1,18 @@
-package com.dagger.devtermquiz.view.bookmark.model
+package com.dagger.devtermquiz.view.main.bookmark.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.dagger.devtermquiz.base.BaseViewModel
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.repository.local.favorite.LocalFavoriteRepoService
-import com.dagger.devtermquiz.view.bookmark.BookMarkNavigator
-import com.orhanobut.logger.Logger
+import com.dagger.devtermquiz.view.main.bookmark.BookMarkFragmentNavigator
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoService) :
-    BaseViewModel<BookMarkNavigator.View>(), BookMarkNavigator.ViewModel {
+class BookMarkFragmentViewModel(private val localFavoriteRepoService: LocalFavoriteRepoService) :
+    BaseViewModel<BookMarkFragmentNavigator.View>(), BookMarkFragmentNavigator.ViewModel {
+
     private val _allFavoriteData = MutableLiveData<List<Favorite>>()
     val allFavoriteData : MutableLiveData<List<Favorite>>
         get() = _allFavoriteData
@@ -25,6 +25,11 @@ class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoS
         return favoriteData
     }
 
+
+    override fun disposableClear() {
+        onCleared()
+    }
+
     override fun onLoadAllFavoriteData() {
         addDisposable(localFavoriteRepoService.getAll()
             .subscribeOn(Schedulers.io())
@@ -34,6 +39,7 @@ class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoS
             },{
 
             }))
+
     }
 
     fun onDeleteById(id: Int) {
@@ -41,11 +47,5 @@ class BookMarkViewModel(private val localFavoriteRepoService: LocalFavoriteRepoS
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {  })
-    }
-
-
-
-    override fun disposableClear() {
-        onCleared()
     }
 }

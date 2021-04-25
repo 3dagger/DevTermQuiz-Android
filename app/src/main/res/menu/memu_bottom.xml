@@ -9,12 +9,12 @@
 
     <item
         android:id="@+id/second_fragment"
-        android:title="Quiz2"
+        android:title="BookMark"
         android:contentDescription=""
         android:icon="@drawable/refresh"/>
     <item
         android:id="@+id/third_fragment"
-        android:title="Quiz3"
+        android:title="Setting"
         android:contentDescription=""
         android:icon="@drawable/refresh"/>
 

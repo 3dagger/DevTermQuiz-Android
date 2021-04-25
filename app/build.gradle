@@ -152,5 +152,12 @@ dependencies {
     // SmoothBottomBar - https://github.com/ibrahimsn98/SmoothBottomBar
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
 
+    // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
+    implementation 'nl.joery.animatedbottombar:library:1.0.9'
+
+    //Navigation Architecture Component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 
 }

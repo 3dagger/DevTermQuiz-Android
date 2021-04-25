@@ -1,4 +1,4 @@
-package com.dagger.devtermquiz.view.main.model
+package com.dagger.devtermquiz.view.old
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,7 +8,7 @@ import com.dagger.devtermquiz.model.django.quiz.SearchQuiz
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.repository.local.favorite.LocalFavoriteRepoService
 import com.dagger.devtermquiz.repository.remote.RemoteService
-import com.dagger.devtermquiz.view.main.MainNavigator
+import com.dagger.devtermquiz.view.old.MainNavigator
 import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

@@ -2,19 +2,18 @@
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.old.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View" />
+        <import type="android.view.View"/>
 
         <variable
             name="activity"
-            type="com.dagger.devtermquiz.view.old.MainActivity" />
+            type="com.dagger.devtermquiz.view.main.quiz.QuizFragment" />
 
         <variable
             name="vm"
-            type="com.dagger.devtermquiz.view.old.MainViewModel" />
+            type="com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel" />
     </data>
 
     <RelativeLayout
@@ -109,15 +108,15 @@
                         app:scale_width="650"
                         />
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_book"
-                        android:onClick="@{() -> activity.onMoveBookMarkActivity()}"
-                        app:scale_height="60"
-                        app:scale_left="570"
-                        app:scale_top="60"
-                        app:scale_width="70"/>
+<!--                    <ImageView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:src="@drawable/ic_book"-->
+<!--                        android:onClick="@{() -> activity.onMoveBookMarkActivity()}"-->
+<!--                        app:scale_height="60"-->
+<!--                        app:scale_left="570"-->
+<!--                        app:scale_top="60"-->
+<!--                        app:scale_width="70"/>-->
 
                     <Button
                         android:id="@+id/btn_ex1"
@@ -237,23 +236,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <uk.co.markormesher.android_fab.FloatingActionButton
-            android:id="@+id/fab"
-            app:fabSize="mini"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:buttonBackgroundColour="@color/itemPrimary"
-            />
-
-        <me.ibrahimsn.lib.SmoothBottomBar
-            android:id="@+id/bottomBar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="?attr/actionBarSize"
-            app:backgroundColor="@color/colorPrimary"
-            app:menu="@menu/memu_bottom"/>
 
     </RelativeLayout>
+
 </layout>

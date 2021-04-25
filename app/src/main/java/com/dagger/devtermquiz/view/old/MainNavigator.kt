@@ -1,4 +1,4 @@
-package com.dagger.devtermquiz.view.main
+package com.dagger.devtermquiz.view.old
 
 import androidx.lifecycle.LiveData
 import com.dagger.devtermquiz.model.fav.Favorite
