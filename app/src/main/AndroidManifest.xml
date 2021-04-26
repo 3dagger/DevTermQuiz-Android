@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dagger.devtermquiz">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +15,8 @@
         android:supportsRtl="true"
         android:largeHeap="true"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:targetApi="m">
         <activity
             android:name=".view.main.MainViewPagerActivity"
             android:screenOrientation="portrait">
@@ -24,12 +27,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.old.MainActivity"
+            android:name=".view.main.bookmark.detail.DetailBookMarkActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.bookmark.detail.DetailBookMarkActivity"
-            android:screenOrientation="portrait" />
-
+        <service
+            android:name=".service.firebase.messaging.FirebaseMessageService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

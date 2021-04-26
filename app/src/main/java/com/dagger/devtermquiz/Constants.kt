@@ -2,7 +2,7 @@ package com.dagger.devtermquiz
 
 class Constants {
     companion object {
-        const val TAG_NAME = "leeam"
+        const val TAG_NAME                                              = "leeam"
 
         const val CONNECT_TIMEOUT                                       = 60L
         const val WRITE_TIMEOUT                                         = 60L
@@ -22,9 +22,13 @@ class Constants {
         const val INTENT_ARGUMENT_BOOK_MARK_THIRD_EXAMPLE               = "INTENT_ARGUMENT_BOOK_MARK_THIRD_EXAMPLE"
         const val INTENT_ARGUMENT_BOOK_MARK_FOURTH_EXAMPLE              = "INTENT_ARGUMENT_BOOK_MARK_FOURTH_EXAMPLE"
         const val INTENT_ARGUMENT_BOOK_MARK_FIRST_COMMENTARY            = "INTENT_ARGUMENT_BOOK_MARK_FIRST_COMMENTARY"
-        const val INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY            = "INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY"
+        const val INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY           = "INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY"
         const val INTENT_ARGUMENT_BOOK_MARK_THIRD_COMMENTARY            = "INTENT_ARGUMENT_BOOK_MARK_THIRD_COMMENTARY"
-        const val INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY            = "INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY"
+        const val INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY           = "INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY"
+
+        const val FRAGMENT_POSITION_QUIZ                                = 0
+        const val FRAGMENT_POSITION_BOOKMARK                            = 1
+        const val FRAGMENT_POSITION_SETTING                             = 2
 
 
     }

@@ -1,16 +1,16 @@
-package com.dagger.devtermquiz.view.bookmark.detail
+package com.dagger.devtermquiz.view.main.bookmark.detail
 
 import androidx.core.content.ContextCompat
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.databinding.ActivityDetailBoookmarkBinding
-import com.dagger.devtermquiz.view.bookmark.detail.model.DetailBookMarkViewModel
-import com.orhanobut.logger.Logger
+import com.dagger.devtermquiz.view.main.bookmark.detail.model.DetailBookMarkViewModel
 import kotlinx.android.synthetic.main.activity_detail_boookmark.*
 import org.koin.android.ext.android.inject
 
-class DetailBookMarkActivity : BaseActivity<ActivityDetailBoookmarkBinding, DetailBookMarkViewModel>(), DetailBookMarkNavigator.View {
+class DetailBookMarkActivity : BaseActivity<ActivityDetailBoookmarkBinding, DetailBookMarkViewModel>(),
+    DetailBookMarkNavigator.View {
     override val viewModel: DetailBookMarkViewModel by inject()
     override val layoutResourceId: Int get() = R.layout.activity_detail_boookmark
 

@@ -7,7 +7,6 @@ import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.databinding.ActivitySplashBinding
 import com.dagger.devtermquiz.ext.openActivity
-import com.dagger.devtermquiz.view.old.MainActivity
 import com.dagger.devtermquiz.view.splash.model.SplashViewModel
 import org.koin.android.ext.android.inject
 
@@ -28,7 +27,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
     }
 
     override fun onMoveMain() {
-        openActivity(MainActivity::class.java)
+//        openActivity(MainActivity::class.java)
     }
 
     override fun onViewModelCleared() {

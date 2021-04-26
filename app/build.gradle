@@ -67,7 +67,6 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     // RetroFit2 - RxJava Adapter : https://github.com/square/retrofit/blob/master/CHANGELOG.md#version-290-2020-05-20
-//    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // OkHttp3 : https://square.github.io/okhttp/
@@ -117,6 +116,16 @@ dependencies {
 
     // Firebase BoM - https://github.com/firebase/quickstart-android/blob/master/database/app/build.gradle
     implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    // Add the dependency for the Firebase SDK for Google Analytics
+    // When using the BoM, don't specify versions in Firebase dependencies
+    // Recommended: Add the Firebase SDK for Google Analytics.
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    // Add the Firebase Crashlytics SDK.
+//    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    // Add the Firebase Messaging SDK.
+    implementation 'com.google.firebase:firebase-messaging-ktx'
+    // Add the Firebase Remote Config.
+    implementation 'com.google.firebase:firebase-config-ktx'
 
     // Firebase Realtime Database (Kotlin) - https://github.com/firebase/quickstart-android/blob/master/database/app/build.gradle
     implementation 'com.google.firebase:firebase-database-ktx'
@@ -137,9 +146,6 @@ dependencies {
     // Awsesome Dialog - https://github.com/chnouman/AwesomeDialog
     implementation 'com.github.chnouman:AwesomeDialog:1.0.5'
 
-    // Floating Action Button - https://github.com/markormesher/android-fab
-    implementation 'uk.co.markormesher:android-fab:2.5.0'
-
     // Kotlin Room - https://developer.android.com/training/data-storage/room?hl=ko
     implementation "androidx.room:room-runtime:2.2.3"
     kapt "androidx.room:room-compiler:2.2.3"
@@ -149,15 +155,9 @@ dependencies {
     // Aweseome Dialog 2 - https://github.com/blennerSilva/AwesomeDialog
     implementation 'com.github.blennerSilva:AwesomeDialog:2.0.5'
 
-    // SmoothBottomBar - https://github.com/ibrahimsn98/SmoothBottomBar
-    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
-
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
-    //Navigation Architecture Component
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 
 }

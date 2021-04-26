@@ -1,5 +1,6 @@
 package com.dagger.devtermquiz.view.main.bookmark
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,13 +12,11 @@ import com.dagger.devtermquiz.base.BaseFragment
 import com.dagger.devtermquiz.base.BaseRecyclerView
 import com.dagger.devtermquiz.databinding.BookmarkItemBinding
 import com.dagger.devtermquiz.databinding.FragmentBookmarkBinding
-import com.dagger.devtermquiz.ext.openActivity
 import com.dagger.devtermquiz.listener.RecyclerViewItemClickListener
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.utility.SwipeHelper
-import com.dagger.devtermquiz.view.bookmark.detail.DetailBookMarkActivity
+import com.dagger.devtermquiz.view.main.bookmark.detail.DetailBookMarkActivity
 import com.dagger.devtermquiz.view.main.bookmark.model.BookMarkFragmentViewModel
-import com.dagger.devtermquiz.view.main.quiz.QuizFragment
 import kotlinx.android.synthetic.main.fragment_bookmark.*
 import org.koin.android.ext.android.inject
 
@@ -81,6 +80,21 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
     }
 
     override fun onRecyclerItemClick(position: Int) {
+        val intent = Intent(mActivity, DetailBookMarkActivity::class.java)
+        intent.apply {
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_ANSWER, arr[position].answer)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_QUESTION, arr[position].question)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_FIRST_EXAMPLE, arr[position].firstExample)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_SECOND_EXAMPLE, arr[position].secondExample)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_THIRD_EXAMPLE, arr[position].thirdExample)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_FOURTH_EXAMPLE, arr[position].fourthExample)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_FIRST_COMMENTARY, arr[position].firstCommentary)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY, arr[position].secondCommentary)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_THIRD_COMMENTARY, arr[position].thirdCommentary)
+            putExtra(Constants.INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY, arr[position].fourthCommentary)
+        }
+        startActivity(intent)
+
 //        openActivity(DetailBookMarkActivity::class.java) {
 //            putInt(Constants.INTENT_ARGUMENT_BOOK_MARK_ANSWER, arr[position].answer)
 //            putString(Constants.INTENT_ARGUMENT_BOOK_MARK_QUESTION, arr[position].question)

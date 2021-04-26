@@ -1,21 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/first_fragment"
         android:title="Quiz"
-        android:contentDescription=""
-        android:icon="@drawable/refresh"/>
+        android:icon="@drawable/ic_baseline_help_center_24"/>
 
     <item
         android:id="@+id/second_fragment"
         android:title="BookMark"
-        android:contentDescription=""
-        android:icon="@drawable/refresh"/>
+        android:icon="@drawable/ic_book"/>
     <item
         android:id="@+id/third_fragment"
         android:title="Setting"
-        android:contentDescription=""
-        android:icon="@drawable/refresh"/>
-
+        android:icon="@drawable/ic_baseline_settings_applications_24"/>
 </menu>

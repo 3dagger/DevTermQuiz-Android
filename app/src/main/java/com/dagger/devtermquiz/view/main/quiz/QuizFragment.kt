@@ -19,7 +19,7 @@ import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.pixplicity.easyprefs.library.Prefs
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
 
 class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
@@ -29,15 +29,12 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
     private  val utility         : Utility by inject()
     private  val doubleBackPress : DoubleBackPress by inject()
 
+    lateinit var buttonList: Array<Button>
+    lateinit var progress: CustomProgressDialog
     var totalCountQuestion = Prefs.getInt(Constants.PREFS_TOTAL_QUESTION_COUNT, 1)
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
-    lateinit var buttonList: Array<Button>
-    lateinit var progress: CustomProgressDialog
-
-//    override val bindingVariableVM: Int get() = BR.vm
-//    override val bindingVariableActivity: Int get() = BR.activity
-
+    @SuppressLint("SetTextI18n")
     override fun initView() {
         viewModel.setNavigator(this)
 
@@ -170,18 +167,9 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
         txt_question_count.text = "$todayCountQuestion / 10"
     }
 
-    fun onMoveBookMarkActivity() {
-//        openActivity(BookMarkActivity::class.java)
-    }
-
-    override fun onViewModelCleared() {
-        viewModel.disposableClear()
-    }
-
     companion object {
         fun newInstance(position: Int): QuizFragment {
-            val instance =
-                QuizFragment()
+            val instance = QuizFragment()
             val args = Bundle()
             args.putInt("position", position)
             instance.arguments = args
@@ -197,4 +185,7 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
         utility.exhaustQuestionDialog(activity = mActivity, cancelabel = true)
     }
 
+    override fun onViewModelCleared() {
+        viewModel.disposableClear()
+    }
 }

@@ -4,16 +4,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.bookmark.detail.DetailBookMarkActivity">
+    tools:context=".view.main.bookmark.detail.DetailBookMarkActivity">
 
     <data>
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="com.dagger.devtermquiz.view.bookmark.detail.DetailBookMarkActivity" />
+            type="com.dagger.devtermquiz.view.main.bookmark.detail.DetailBookMarkActivity" />
         <variable
             name="vm"
-            type="com.dagger.devtermquiz.view.bookmark.detail.model.DetailBookMarkViewModel" />
+            type="com.dagger.devtermquiz.view.main.bookmark.detail.model.DetailBookMarkViewModel" />
     </data>
 
     <RelativeLayout

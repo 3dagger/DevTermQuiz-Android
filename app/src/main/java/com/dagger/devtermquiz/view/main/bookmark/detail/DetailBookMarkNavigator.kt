@@ -1,4 +1,4 @@
-package com.dagger.devtermquiz.view.bookmark.detail
+package com.dagger.devtermquiz.view.main.bookmark.detail
 
 interface DetailBookMarkNavigator {
     interface View{

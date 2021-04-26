@@ -3,8 +3,8 @@ package com.dagger.devtermquiz.model.django.quiz
 import com.google.gson.annotations.SerializedName
 
 data class SearchQuiz(
-    @SerializedName("id") var id: Int,
     @SerializedName("question") var question: String,
+    @SerializedName("id") var id: Int,
     @SerializedName("answer") var answer: Int,
     @SerializedName("firstExample") var firstExample: String,
     @SerializedName("secondExample") var secondExample: String,

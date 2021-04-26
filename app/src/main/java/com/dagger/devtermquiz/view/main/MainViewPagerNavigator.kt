@@ -5,7 +5,7 @@ interface MainViewPagerNavigator {
 
     }
     interface ViewModel{
-
+        fun disposableClear()
     }
 
 }
