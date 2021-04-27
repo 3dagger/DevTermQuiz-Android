@@ -46,10 +46,10 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
 
     override fun onProcess() {
 
-//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-//            Logger.d("task exception:: ${task.exception}")
-//            Logger.d("task result:: ${task.result}")
-//        })
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            Logger.d("task exception:: ${task.exception}")
+            Logger.d("task result:: ${task.result}")
+        })
         
         Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY).addOnCompleteListener { task ->
             Logger.d("task result :: ${task.isSuccessful}")
