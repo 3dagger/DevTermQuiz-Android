@@ -15,7 +15,9 @@ import com.dagger.devtermquiz.view.main.quiz.QuizFragment
 import com.dagger.devtermquiz.view.main.setting.SettingFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.iid.FirebaseInstanceId
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_viewpager.*
@@ -44,10 +46,20 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
 
     override fun onProcess() {
 
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            Logger.d("task exception:: ${task.exception}")
-            Logger.d("task result:: ${task.result}")
-        })
+//        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+//            Logger.d("task exception:: ${task.exception}")
+//            Logger.d("task result:: ${task.result}")
+//        })
+        
+        Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY).addOnCompleteListener { task ->
+            Logger.d("task result :: ${task.isSuccessful}")
+            Logger.d("task result :: ${task.result}")
+            var msg = "구독" 
+            if (!task.isSuccessful) {
+                Logger.d("여기 들어오면 실패임")
+                msg = "실패"
+            }
+        }
     }
 
     override fun onViewModelCleared() {

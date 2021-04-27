@@ -10,6 +10,8 @@ class Constants {
 
         const val MOVE_MAIN_DELAYED_MILLIS                              = 1000L
 
+        const val FIREBASE_SUBSCRIBE_KEY                                = "3dagger"
+
         const val PREFS_NOW_STRING                                      = "PREFS_NOW_DATE"
         const val PREFS_USER_FIRST_ENTRY                                = "PREFS_USER_FIRST_ENTRY"
         const val PREFS_QUESTION_COUNT                                  = "PREFS_QUESTION_COUNT"
