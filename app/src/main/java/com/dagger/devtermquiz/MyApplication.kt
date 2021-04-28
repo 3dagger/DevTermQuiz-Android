@@ -6,6 +6,10 @@ import android.content.ContextWrapper
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import com.dagger.devtermquiz.di.*
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.ktx.Firebase
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
@@ -52,7 +56,7 @@ class MyApplication : Application() {
             .setUseDefaultSharedPreference(true)
             .build()
 
-
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
 
     }
 

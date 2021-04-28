@@ -14,6 +14,7 @@ import com.dagger.devtermquiz.ext.gone
 import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
 import com.dagger.devtermquiz.model.fav.Favorite
+import com.dagger.devtermquiz.model.request.fail.RequestFail
 import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
@@ -183,6 +184,10 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
 
     override fun onExhaustQuiz() {
         utility.exhaustQuestionDialog(activity = mActivity, cancelabel = true)
+    }
+
+    override fun onRequestFailed(requestFail: RequestFail) {
+
     }
 
     override fun onViewModelCleared() {

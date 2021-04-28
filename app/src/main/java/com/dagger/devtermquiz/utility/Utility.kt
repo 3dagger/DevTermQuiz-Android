@@ -42,15 +42,7 @@ class Utility(private val context: Context) {
             .position(AwesomeDialog.POSITIONS.CENTER)
             .setCancelable(cancelable)
     }
-//
-//    fun wrongAnswerDialog(activity: Activity, cancelable: Boolean) {
-//        AwesomeDialog.build(context = activity)
-//            .title("아쉬워요")
-//            .body("다른 답을 골라보세요")
-//            .icon(R.drawable.ic_congrts)
-//            .setCancelable(cancelable)
-//   }
-//
+
     fun exhaustQuestionDialog(activity: Activity, cancelabel: Boolean) {
         AwesomeDialog.build(context = activity)
             .title("죄송합니다")
@@ -58,6 +50,35 @@ class Utility(private val context: Context) {
             .icon(R.drawable.ic_congrts)
             .position(AwesomeDialog.POSITIONS.CENTER)
             .setCancelable(cancelabel)
+    }
+
+    fun serverFixingDialog(activity: Activity, cancelabel: Boolean) {
+        AwesomeDialog.build(context = activity)
+            .title("죄송합니다")
+            .body("현재 서버 점검중입니다. 잠시 후 이용해 주세요.")
+            .icon(R.drawable.ic_congrts)
+            .position(AwesomeDialog.POSITIONS.CENTER)
+            .setCancelable(cancelabel)
+    }
+
+    fun requestFailDialog(activity: Activity,
+                          cancelable: Boolean,
+                          title: String,
+                          body: String,
+                          listener: AwesomeDialogListener) {
+        AwesomeDialog.build(context = activity)
+            .title(title)
+            .body(body)
+            .icon(R.drawable.ic_dialog_error)
+            .onPositive("다시 시도") {
+                listener.onConfirmClick()
+            }
+            .onNegative("종료") {
+                listener.onAddBookMarkClick()
+
+            }
+            .position(AwesomeDialog.POSITIONS.CENTER)
+            .setCancelable(cancelable)
     }
 
     fun wrongAnswerDialog(context: Context,

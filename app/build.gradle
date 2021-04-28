@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -121,7 +122,7 @@ dependencies {
     // Recommended: Add the Firebase SDK for Google Analytics.
     implementation 'com.google.firebase:firebase-analytics-ktx'
     // Add the Firebase Crashlytics SDK.
-//    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
     // Add the Firebase Messaging SDK.
     implementation 'com.google.firebase:firebase-messaging-ktx'
     // Add the Firebase Remote Config.

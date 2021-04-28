@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
+import com.dagger.devtermquiz.adapter.ViewPagerAdapter
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.databinding.ActivityViewpagerBinding
 import com.dagger.devtermquiz.view.main.bookmark.BookMarkFragment
@@ -22,15 +23,15 @@ import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.activity_viewpager.*
 import org.koin.android.ext.android.inject
+import java.lang.RuntimeException
 
 class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPagerViewModel>(), MainViewPagerNavigator.View{
     override val layoutResourceId: Int get() = R.layout.activity_viewpager
     override val viewModel: MainViewPagerViewModel by inject()
     private  val doubleBackPress : DoubleBackPress by inject()
 
-
     override fun initView() {
-        view_pager.adapter = ViewPager2Adapter(supportFragmentManager, lifecycle)
+        view_pager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         bottom_bar.setupWithViewPager2(view_pager)
         bottom_bar.apply {
             onTabSelected = {
@@ -38,58 +39,29 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
             }
             onTabReselected = {
                 Log.i("ViewPagerActivity", "onTabReselected: ${it.title}")
+                Firebase.messaging.unsubscribeFromTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
             }
         }
 
         doubleBackPress.setDoubleBackPressAction { finishAffinity() }
     }
 
+    /**
+     * @author : 이수현
+     * @Date : 4/28/21 9:58 AM
+     * @Description : FCM 구독 
+     * @History : 
+     *
+     **/
     override fun onProcess() {
-
-        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
-            Logger.d("task exception:: ${task.exception}")
-            Logger.d("task result:: ${task.result}")
-        })
-        
-        Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY).addOnCompleteListener { task ->
-            Logger.d("task result :: ${task.isSuccessful}")
-            Logger.d("task result :: ${task.result}")
-            var msg = "구독" 
-            if (!task.isSuccessful) {
-                Logger.d("여기 들어오면 실패임")
-                msg = "실패"
-            }
-        }
+        Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
     }
-
-    override fun onViewModelCleared() {
-        viewModel.disposableClear()
-    }
-
+    
     override fun onBackPressed() {
         doubleBackPress.onBackPressed()
     }
 
-
-    class ViewPager2Adapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
-        FragmentStateAdapter(fragmentManager, lifecycle) {
-        override fun getItemCount(): Int {
-            return 3
-        }
-
-        override fun createFragment(position: Int): Fragment {
-            return when(position) {
-                Constants.FRAGMENT_POSITION_QUIZ -> {
-                    QuizFragment.newInstance(position)
-                }
-                Constants.FRAGMENT_POSITION_BOOKMARK -> {
-                    BookMarkFragment.newInstance(position)
-                }
-                Constants.FRAGMENT_POSITION_SETTING -> {
-                    SettingFragment.newInstance(position)
-                }
-                else -> QuizFragment.newInstance(position)
-            }
-        }
+    override fun onViewModelCleared() {
+        viewModel.disposableClear()
     }
 }
