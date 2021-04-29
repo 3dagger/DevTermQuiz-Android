@@ -8,7 +8,7 @@ class Constants {
         const val CONNECT_TIMEOUT                                       = 60L
         const val WRITE_TIMEOUT                                         = 60L
         const val READ_TIMEOUT                                          = 60L
-        const val MOVE_MAIN_DELAYED_MILLIS                              = 5000L
+        const val MOVE_MAIN_DELAYED_MILLIS                              = 3000L
 
         const val PREFS_NOW_STRING                                      = "PREFS_NOW_DATE"
         const val PREFS_USER_FIRST_ENTRY                                = "PREFS_USER_FIRST_ENTRY"

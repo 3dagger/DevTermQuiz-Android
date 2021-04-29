@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
+        android:fitsSystemWindows="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml">
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/top_sl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:scale_base_height="150"
+            app:scale_base_width="720">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:text="설정"
+                android:textStyle="bold"
+                app:scale_height="50"
+                app:scale_left="10"
+                app:scale_textsize="40"
+                app:scale_top="40"
+                app:scale_width="140" />
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
 
         <Switch
             android:id="@+id/switch_fcm_on_off"
             android:layout_centerInParent="true"
-            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

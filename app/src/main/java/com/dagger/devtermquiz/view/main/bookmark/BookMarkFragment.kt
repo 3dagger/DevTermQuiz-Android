@@ -1,7 +1,12 @@
 package com.dagger.devtermquiz.view.main.bookmark
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -12,11 +17,14 @@ import com.dagger.devtermquiz.base.BaseFragment
 import com.dagger.devtermquiz.base.BaseRecyclerView
 import com.dagger.devtermquiz.databinding.BookmarkItemBinding
 import com.dagger.devtermquiz.databinding.FragmentBookmarkBinding
+import com.dagger.devtermquiz.ext.gone
+import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.listener.RecyclerViewItemClickListener
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.utility.SwipeHelper
 import com.dagger.devtermquiz.view.main.bookmark.detail.DetailBookMarkActivity
 import com.dagger.devtermquiz.view.main.bookmark.model.BookMarkFragmentViewModel
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.fragment_bookmark.*
 import org.koin.android.ext.android.inject
 
@@ -46,7 +54,7 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
             ){}
         }
 
-        viewModel.onLoadAllFavoriteData()
+
         viewModel.allFavoriteData.observe(this@BookMarkFragment, Observer {
             arr.clear()
             idArray.clear()
@@ -54,7 +62,6 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
                 arr.add(it[i])
                 idArray.add(it[i].id)
             }
-
         })
 
         recyclerView.addItemDecoration(DividerItemDecoration(mActivity, DividerItemDecoration.VERTICAL))
@@ -67,6 +74,7 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
             }
         })
         itemTouchHelper.attachToRecyclerView(recyclerView)
+
     }
 
     private fun deleteButton(position: Int) : SwipeHelper.UnderlayButton {
@@ -95,41 +103,25 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
         }
         startActivity(intent)
 
-//        openActivity(DetailBookMarkActivity::class.java) {
-//            putInt(Constants.INTENT_ARGUMENT_BOOK_MARK_ANSWER, arr[position].answer)
-//            putString(Constants.INTENT_ARGUMENT_BOOK_MARK_QUESTION, arr[position].question)
-//            putString(Constants.INTENT_ARGUMENT_BOOK_MARK_FIRST_EXAMPLE, arr[position].firstExample)
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_SECOND_EXAMPLE,
-//                arr[position].secondExample
-//            )
-//            putString(Constants.INTENT_ARGUMENT_BOOK_MARK_THIRD_EXAMPLE, arr[position].thirdExample)
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_FOURTH_EXAMPLE,
-//                arr[position].fourthExample
-//            )
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_FIRST_COMMENTARY,
-//                arr[position].firstCommentary
-//            )
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_SECOND_COMMENTARY,
-//                arr[position].secondCommentary
-//            )
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_THIRD_COMMENTARY,
-//                arr[position].thirdCommentary
-//            )
-//            putString(
-//                Constants.INTENT_ARGUMENT_BOOK_MARK_FOURTH_COMMENTARY,
-//                arr[position].fourthCommentary
-//            )
-//        }
     }
 
     override fun onRecyclerLongItemClick(position: Int) {
     }
 
+    override fun onRecyclerViewEmpty() {
+        txt_empty_bookmark_msg.show()
+        recyclerView.gone()
+    }
+
+    override fun onRecyclerViewNotEmpty() {
+        txt_empty_bookmark_msg.gone()
+        recyclerView.show()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.onLoadAllFavoriteData()
+    }
     companion object {
         fun newInstance(position: Int): BookMarkFragment {
             val instance = BookMarkFragment()

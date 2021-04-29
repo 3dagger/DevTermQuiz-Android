@@ -39,7 +39,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), S
     /**
      * @author : 이수현
      * @Date : 4/28/21 3:17 PM
-     * @Description : 
+     * @Description :
      * @History : 
      *
      **/

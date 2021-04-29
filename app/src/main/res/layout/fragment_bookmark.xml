@@ -41,25 +41,23 @@
                 android:text="북마크"
                 android:textStyle="bold"
                 app:scale_height="50"
-                app:scale_left="290"
+                app:scale_left="10"
                 app:scale_textsize="40"
-                app:scale_top="70"
+                app:scale_top="40"
                 app:scale_width="140" />
 
-<!--            <ImageButton-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:background="#000000"-->
-<!--                android:onClick="@{() -> activity.finish()}"-->
-<!--                android:src="@drawable/ic_baseline_arrow_back_ios_24"-->
-<!--                app:scale_height="40"-->
-<!--                app:scale_left="30"-->
-<!--                app:scale_top="80"-->
-<!--                app:scale_width="50"-->
-<!--                />-->
-
-
         </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <TextView
+            android:id="@+id/txt_empty_bookmark_msg"
+            android:visibility="gone"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:text="아직 등록된 북마크가 업습니다!.."
+            android:textSize="20dp"
+            android:textColor="#FFFFFF"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

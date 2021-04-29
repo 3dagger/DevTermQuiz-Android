@@ -7,6 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.orhanobut.logger.Logger
 
 abstract class BaseRecyclerView {
     abstract class Adapter<ITEM : Any, B : ViewDataBinding>(@LayoutRes private val layoutResId: Int, private val bindingVariableId: Int? = null,
@@ -60,9 +61,11 @@ abstract class BaseRecyclerView {
                         binding.setVariable(it, item)
                     }
 
+
                     bindingActivityId?.let {
                         binding.setVariable(it, activity)
                     }
+
                 }catch (e : Exception){
                     e.printStackTrace()
                 }

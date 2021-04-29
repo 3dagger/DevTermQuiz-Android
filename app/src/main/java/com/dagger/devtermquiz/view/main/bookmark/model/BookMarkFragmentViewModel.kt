@@ -6,6 +6,7 @@ import com.dagger.devtermquiz.base.BaseViewModel
 import com.dagger.devtermquiz.model.fav.Favorite
 import com.dagger.devtermquiz.repository.local.favorite.LocalFavoriteRepoService
 import com.dagger.devtermquiz.view.main.bookmark.BookMarkFragmentNavigator
+import com.orhanobut.logger.Logger
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -35,7 +36,12 @@ class BookMarkFragmentViewModel(private val localFavoriteRepoService: LocalFavor
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ allFavoriteData ->
-                _allFavoriteData.value = allFavoriteData
+                if(allFavoriteData.isEmpty()) {
+                    getNavigator().onRecyclerViewEmpty()
+                }else {
+                    getNavigator().onRecyclerViewNotEmpty()
+                    _allFavoriteData.value = allFavoriteData
+                }
             },{
 
             }))

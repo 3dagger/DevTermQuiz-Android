@@ -21,25 +21,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding, SettingFragmentView
 
     override fun initView() {
         viewModel.setNavigator(this@SettingFragment)
-
-
     }
 
     override fun onProcess() {
-        switch_fcm_on_off.setOnCheckedChangeListener { buttonView, isChecked ->
-            if(isChecked) {
-                if(Prefs.getBoolean(Constants.PREFS_PUSH_SETTING_IS_ON, true)) {
+        switch_fcm_on_off.apply {
+            isChecked = Prefs.getBoolean(Constants.PREFS_PUSH_SETTING_IS_ON, true)
+            setOnCheckedChangeListener { _, isChecked ->
+                if(isChecked) {
                     Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
                     Prefs.putBoolean(Constants.PREFS_PUSH_SETTING_IS_ON, true)
+                }else {
+                    Firebase.messaging.unsubscribeFromTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
+                    Prefs.putBoolean(Constants.PREFS_PUSH_SETTING_IS_ON, false)
                 }
-            }else {
-                Firebase.messaging.unsubscribeFromTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
-                Prefs.putBoolean(Constants.PREFS_PUSH_SETTING_IS_ON, false)
-                Logger.d("unsubscribe")
             }
         }
-
-
     }
 
     companion object {

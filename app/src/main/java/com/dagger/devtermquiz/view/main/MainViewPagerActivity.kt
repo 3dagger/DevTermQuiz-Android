@@ -10,6 +10,7 @@ import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.adapter.ViewPagerAdapter
 import com.dagger.devtermquiz.base.BaseActivity
 import com.dagger.devtermquiz.databinding.ActivityViewpagerBinding
+import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.bookmark.BookMarkFragment
 import com.dagger.devtermquiz.view.main.model.MainViewPagerViewModel
 import com.dagger.devtermquiz.view.main.quiz.QuizFragment
@@ -21,6 +22,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.ktx.messaging
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.orhanobut.logger.Logger
+import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.activity_viewpager.*
 import org.koin.android.ext.android.inject
 import java.lang.RuntimeException
@@ -29,6 +31,7 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
     override val layoutResourceId: Int get() = R.layout.activity_viewpager
     override val viewModel: MainViewPagerViewModel by inject()
     private  val doubleBackPress : DoubleBackPress by inject()
+    private  val utility         : Utility         by inject()
 
     override fun initView() {
         view_pager.adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
@@ -39,11 +42,26 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
             }
             onTabReselected = {
                 Log.i("ViewPagerActivity", "onTabReselected: ${it.title}")
-                Firebase.messaging.unsubscribeFromTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
             }
         }
 
         doubleBackPress.setDoubleBackPressAction { finishAffinity() }
+
+        // 최초 접속
+        if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
+            Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
+            Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY, false)
+            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
+
+            Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
+        }
+
+        // 00시 된 후 실행했을때
+        if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
+            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
+            Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
+        }else {
+        }
     }
 
     /**
@@ -54,7 +72,6 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
      *
      **/
     override fun onProcess() {
-        Firebase.messaging.subscribeToTopic(Constants.FIREBASE_SUBSCRIBE_KEY)
     }
     
     override fun onBackPressed() {
