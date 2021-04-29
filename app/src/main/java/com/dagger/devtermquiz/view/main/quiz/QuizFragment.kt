@@ -19,6 +19,7 @@ import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
+import com.lovejjfg.powerrefresh.OnRefreshListener
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
@@ -43,21 +44,19 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
 
         doubleBackPress.setDoubleBackPressAction { finishAffinity(mActivity) }
 
-//        // 최초 접속
-//        if (Prefs.getBoolean(Constants.PREFS_USER_FIRST_ENTRY, true)) {
-//            Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
-//            Prefs.putBoolean(Constants.PREFS_USER_FIRST_ENTRY, false)
-//            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
-//        }
+        toolbar.title = "HELLO EXAMPLE"
+        mActivity.setSupportActionBar(toolbar)
+        if(mActivity.supportActionBar != null) mActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
 
-//        // 00시 된 후 실행했을때
-//        if (utility.getNowDate() != Prefs.getString(Constants.PREFS_NOW_STRING, "")) {
-//            Prefs.putInt(Constants.PREFS_QUESTION_COUNT, 1)
-//            Prefs.putString(Constants.PREFS_NOW_STRING, utility.getNowDate())
-//        }else {
-////            Logger.d("같음")
+
+//        refreshLayout.setOnHeaderListener(object : OnRefreshListener {
+//            override fun onLoadMore() {
+//            }
 //
-//        }
+//            override fun onRefresh() {
+//            }
+//
+//        })
 
         progress = CustomProgressDialog(
             context = mActivity,
@@ -73,6 +72,8 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
         }
 
         txt_question_count.text = "$todayCountQuestion / 10"
+
+
     }
 
     override fun onProcess() {

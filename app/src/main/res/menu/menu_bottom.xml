@@ -13,4 +13,9 @@
         android:id="@+id/third_fragment"
         android:title="Setting"
         android:icon="@drawable/ic_baseline_settings_applications_24"/>
+
+    <item
+        android:id="@+id/fourth_fragment"
+        android:title="Test"
+        android:icon="@drawable/ic_baseline_settings_applications_24"/>
 </menu>

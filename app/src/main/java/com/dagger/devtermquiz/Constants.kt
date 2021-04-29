@@ -34,7 +34,7 @@ class Constants {
         const val FRAGMENT_POSITION_BOOKMARK                            = 1
         const val FRAGMENT_POSITION_SETTING                             = 2
 
-        const val VIEWPAGER_ITEM_COUNT                                  = 3
+        const val VIEWPAGER_ITEM_COUNT                                  = 4
 
 
     }

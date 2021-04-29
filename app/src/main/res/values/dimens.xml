@@ -22,4 +22,6 @@
 
     <dimen name="bottom_bar_icon_padding">24dp</dimen>
     <dimen name="bottom_bar_height">@dimen/fab_size</dimen>
+
+    <dimen name="app_bar_height">180dp</dimen>
 </resources>

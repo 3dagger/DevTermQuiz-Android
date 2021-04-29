@@ -21,6 +21,7 @@ import com.dagger.devtermquiz.ext.gone
 import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.listener.RecyclerViewItemClickListener
 import com.dagger.devtermquiz.model.fav.Favorite
+import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.SwipeHelper
 import com.dagger.devtermquiz.view.main.bookmark.detail.DetailBookMarkActivity
 import com.dagger.devtermquiz.view.main.bookmark.model.BookMarkFragmentViewModel
@@ -36,8 +37,17 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
     private var arr : MutableList<Favorite> = mutableListOf()
     private var idArray : MutableList<Int> = mutableListOf()
 
+    lateinit var progress: CustomProgressDialog
+
     override fun initView() {
         viewModel.setNavigator(this@BookMarkFragment)
+
+        progress = CustomProgressDialog(
+            context = mActivity,
+            message = "잠시만 기다려주세요.",
+            cancelable = false
+        )
+        progress.show()
     }
 
     override fun onProcess() {
@@ -53,6 +63,8 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
                 bindingVariableId = BR.allFavoriteData
             ){}
         }
+
+
 
 
         viewModel.allFavoriteData.observe(this@BookMarkFragment, Observer {
@@ -122,6 +134,11 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
         super.onResume()
         viewModel.onLoadAllFavoriteData()
     }
+
+    override fun dismissProgress() {
+        if(progress.isShowing) progress.dismiss()
+    }
+
     companion object {
         fun newInstance(position: Int): BookMarkFragment {
             val instance = BookMarkFragment()

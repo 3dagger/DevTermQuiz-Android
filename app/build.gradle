@@ -159,6 +159,7 @@ dependencies {
     // AnimatedBottomBar - https://github.com/Droppers/AnimatedBottomBar
     implementation 'nl.joery.animatedbottombar:library:1.0.9'
 
-
+    // Pull To Refresh
+    implementation group: 'com.lovejjfg', name: 'powerrefresh', version: '0.0.2'
 
 }

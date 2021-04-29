@@ -4,7 +4,7 @@ interface BookMarkFragmentNavigator {
     interface View {
         fun onRecyclerViewEmpty()
         fun onRecyclerViewNotEmpty()
-
+        fun dismissProgress()
     }
     interface ViewModel {
         fun disposableClear()
