@@ -1,10 +1,14 @@
 package com.dagger.devtermquiz.view.main.quiz
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Button
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
@@ -19,10 +23,10 @@ import com.dagger.devtermquiz.utility.CustomProgressDialog
 import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
-import com.lovejjfg.powerrefresh.OnRefreshListener
 import com.pixplicity.easyprefs.library.Prefs
 import kotlinx.android.synthetic.main.fragment_main.*
 import org.koin.android.ext.android.inject
+
 
 class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
     QuizFragmentNavigator.View {
@@ -44,19 +48,15 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
 
         doubleBackPress.setDoubleBackPressAction { finishAffinity(mActivity) }
 
-        toolbar.title = "HELLO EXAMPLE"
         mActivity.setSupportActionBar(toolbar)
-        if(mActivity.supportActionBar != null) mActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        if(mActivity.supportActionBar != null) {
+            mActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+            mActivity.supportActionBar!!.setDisplayShowTitleEnabled(false);
+        }
 
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//        window.setStatusBarColor(Color.BLUE)
 
-//        refreshLayout.setOnHeaderListener(object : OnRefreshListener {
-//            override fun onLoadMore() {
-//            }
-//
-//            override fun onRefresh() {
-//            }
-//
-//        })
 
         progress = CustomProgressDialog(
             context = mActivity,
@@ -72,8 +72,6 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
         }
 
         txt_question_count.text = "$todayCountQuestion / 10"
-
-
     }
 
     override fun onProcess() {
@@ -81,11 +79,17 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
 
         viewModel.searchSingleQuizData.observe(mActivity, Observer { searchQuiz ->
             for (i in buttonList.indices) {
-                buttonList[i].background = ContextCompat.getDrawable(mActivity, R.drawable.book_mark_detail_background)
+                buttonList[i].background = ContextCompat.getDrawable(
+                    mActivity,
+                    R.drawable.book_mark_detail_background
+                )
                 if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
                     buttonList[i].setOnClickListener {
-                        buttonList[i].background = ContextCompat.getDrawable(mActivity, R.drawable.book_mark_detail_answer_background)
+                        buttonList[i].background = ContextCompat.getDrawable(
+                            mActivity,
+                            R.drawable.book_mark_detail_answer_background
+                        )
                         utility.answerDialog(
                             activity = mActivity,
                             cancelable = false,
@@ -98,18 +102,18 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
                                 override fun onAddBookMarkClick() {
                                     viewModel.onInsertFavoriteData(
                                         Favorite(
-                                        question =  searchQuiz.question,
-                                        id = searchQuiz.id,
-                                        answer =  searchQuiz.answer,
-                                        firstExample = searchQuiz.firstExample,
-                                        secondExample = searchQuiz.secondExample,
-                                        thirdExample = searchQuiz.thirdExample,
-                                        fourthExample = searchQuiz.fourthExample,
-                                        firstCommentary = searchQuiz.firstCommentary,
-                                        secondCommentary = searchQuiz.secondCommentary,
-                                        thirdCommentary = searchQuiz.thirdCommentary,
-                                        fourthCommentary = searchQuiz.fourthCommentary
-                                    )
+                                            question = searchQuiz.question,
+                                            id = searchQuiz.id,
+                                            answer = searchQuiz.answer,
+                                            firstExample = searchQuiz.firstExample,
+                                            secondExample = searchQuiz.secondExample,
+                                            thirdExample = searchQuiz.thirdExample,
+                                            fourthExample = searchQuiz.fourthExample,
+                                            firstCommentary = searchQuiz.firstCommentary,
+                                            secondCommentary = searchQuiz.secondCommentary,
+                                            thirdCommentary = searchQuiz.thirdCommentary,
+                                            fourthCommentary = searchQuiz.fourthCommentary
+                                        )
                                     )
                                     btn_next.show()
                                 }
@@ -188,7 +192,6 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
     }
 
     override fun onRequestFailed(requestFail: RequestFail) {
-
     }
 
     override fun onViewModelCleared() {

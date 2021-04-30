@@ -38,6 +38,7 @@ class BookMarkFragmentViewModel(private val localFavoriteRepoService: LocalFavor
             .subscribe({ allFavoriteData ->
                 if(allFavoriteData.isEmpty()) {
                     getNavigator().onRecyclerViewEmpty()
+                    getNavigator().dismissProgress()
                 }else {
                     getNavigator().onRecyclerViewNotEmpty()
                     _allFavoriteData.value = allFavoriteData

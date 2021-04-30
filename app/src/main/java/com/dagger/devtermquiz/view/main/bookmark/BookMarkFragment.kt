@@ -64,9 +64,6 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
             ){}
         }
 
-
-
-
         viewModel.allFavoriteData.observe(this@BookMarkFragment, Observer {
             arr.clear()
             idArray.clear()
@@ -98,6 +95,7 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
                 }
             })
     }
+
 
     override fun onRecyclerItemClick(position: Int) {
         val intent = Intent(mActivity, DetailBookMarkActivity::class.java)
@@ -148,6 +146,8 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
             return instance
         }
     }
+
+
 
     override fun onViewModelCleared() {
         viewModel.disposableClear()

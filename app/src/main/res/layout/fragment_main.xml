@@ -16,132 +16,77 @@
             type="com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel" />
     </data>
 
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/main_top_background">
 
-        <RelativeLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-<!--            <com.ssomai.android.scalablelayout.ScalableLayout-->
-<!--                android:id="@+id/slTop"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                app:scale_base_height="350"-->
-<!--                app:scale_base_width="720">-->
 
-                <com.google.android.material.appbar.AppBarLayout
-                    android:id="@+id/appbar"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/main_top_background"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapse"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:background="@drawable/main_top_background"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+                    android:layout_height="match_parent"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                    <com.google.android.material.appbar.CollapsingToolbarLayout
-                        android:id="@+id/collapse"
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:contentScrim="?attr/colorPrimary"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                        android:layout_height="?attr/actionBarSize"
+                        android:minHeight="?attr/actionBarSize"
+                        app:layout_collapseMode="pin" />
 
-                        <ImageView
-                            android:id="@+id/imageview"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:fitsSystemWindows="true"
-                            android:scaleType="centerCrop"
-                            android:src="@mipmap/flow_light"
-                            app:layout_collapseMode="parallax"/>
+                    <Button
+                        android:id="@+id/btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#00000000"
+                        android:onClick="@{() -> activity.onRepeatRequestSingleQuizData()}"
+                        android:text="@string/str_next"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        app:layout_collapseMode="parallax" />
 
-                        <androidx.appcompat.widget.Toolbar
-                            android:id="@+id/toolbar"
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:minHeight="?attr/actionBarSize"
-                            app:layout_collapseMode="pin"/>
-
-                        <Button
-                            app:layout_collapseMode="parallax"
-                            android:id="@+id/btn_next"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="#00000000"
-                            android:onClick="@{() -> activity.onRepeatRequestSingleQuizData()}"
-                            android:text="@string/str_next"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            app:scale_height="80"
-                            app:scale_left="450"
-                            app:scale_textsize="45"
-                            app:scale_top="260"
-                            app:scale_width="210" />
-
-                        <TextView
-                            app:layout_collapseMode="parallax"
-                            android:id="@+id/txt_question"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="123123dsafklsdfjksaldfjalskdfj"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                             />
-
-                        <TextView
-                            app:layout_collapseMode="parallax"
-                            android:id="@+id/txt_question_count"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:text="1 / 10"
-                            android:textColor="#FFFFFF"
-                            android:textStyle="bold"
-                            android:visibility="gone"
-                            app:scale_height="60"
-                            app:scale_left="40"
-                            app:scale_textsize="45"
-                            app:scale_top="80"
-                            app:scale_width="650" />
-
-                    </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-                    <!--                        <TextView-->
-                    <!--                            android:layout_width="match_parent"-->
-                    <!--                            android:layout_height="match_parent"-->
-                    <!--                            android:gravity="center"-->
-                    <!--                            android:text="오늘의 퀴즈sdsdsd"-->
-                    <!--                            android:textColor="#FFFFFF"-->
-                    <!--                            android:textStyle="bold"-->
-                    <!--                            app:scale_height="40"-->
-                    <!--                            app:scale_left="40"-->
-                    <!--                            app:scale_textsize="25"-->
-                    <!--                            app:scale_top="20"-->
-                    <!--                            app:scale_width="650" />-->
+                    <TextView
+                        android:id="@+id/txt_question"
+                        android:layout_width="wrap_content"
+                        android:layout_height="230dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@{vm.searchSingleQuizData.question}"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        app:layout_collapseMode="parallax" />
 
 
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
 
 
-
-                </com.google.android.material.appbar.AppBarLayout>
-
-
-<!--            </com.ssomai.android.scalablelayout.ScalableLayout>-->
+            </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/appbar"
                 android:background="@drawable/rounded_question_background"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                 <RelativeLayout
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                     <com.ssomai.android.scalablelayout.ScalableLayout
                         android:id="@+id/slBottom"
@@ -151,32 +96,32 @@
                         app:scale_base_height="950"
                         app:scale_base_width="720">
 
-                        <!--                            <TextView-->
-                        <!--                                android:layout_width="match_parent"-->
-                        <!--                                android:layout_height="match_parent"-->
-                        <!--                                android:gravity="center"-->
-                        <!--                                android:text="오늘의 퀴즈"-->
-                        <!--                                android:textColor="#FFFFFF"-->
-                        <!--                                android:textStyle="bold"-->
-                        <!--                                app:scale_height="40"-->
-                        <!--                                app:scale_left="40"-->
-                        <!--                                app:scale_textsize="25"-->
-                        <!--                                app:scale_top="20"-->
-                        <!--                                app:scale_width="650" />-->
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="오늘의 퀴즈"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:scale_height="40"
+                            app:scale_left="40"
+                            app:scale_textsize="25"
+                            app:scale_top="20"
+                            app:scale_width="650" />
 
-                        <!--                            <TextView-->
-                        <!--                                android:id="@+id/txt_question_count"-->
-                        <!--                                android:layout_width="match_parent"-->
-                        <!--                                android:layout_height="wrap_content"-->
-                        <!--                                android:gravity="center"-->
-                        <!--                                android:text="1 / 10"-->
-                        <!--                                android:textColor="#FFFFFF"-->
-                        <!--                                android:textStyle="bold"-->
-                        <!--                                app:scale_height="60"-->
-                        <!--                                app:scale_left="40"-->
-                        <!--                                app:scale_textsize="45"-->
-                        <!--                                app:scale_top="60"-->
-                        <!--                                app:scale_width="650" />-->
+                        <TextView
+                            android:id="@+id/txt_question_count"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="1 / 10"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:scale_height="60"
+                            app:scale_left="40"
+                            app:scale_textsize="45"
+                            app:scale_top="60"
+                            app:scale_width="650" />
 
 
                         <Button
@@ -253,6 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_below="@id/slBottom"
+                        android:visibility="gone"
                         app:scale_base_height="1550"
                         app:scale_base_width="720">
 
@@ -294,8 +240,7 @@
                 </RelativeLayout>
 
             </androidx.core.widget.NestedScrollView>
-        </RelativeLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-
+    </RelativeLayout>
 </layout>
