@@ -137,6 +137,23 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
         if(progress.isShowing) progress.dismiss()
     }
 
+
+    override fun onStop() {
+        dismissProgress()
+        super.onStop()
+    }
+    override fun onDetach() {
+        super.onDetach()
+        Logger.d("onDetach?")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Logger.d("destroy?")
+    }
+
+
+
     companion object {
         fun newInstance(position: Int): BookMarkFragment {
             val instance = BookMarkFragment()

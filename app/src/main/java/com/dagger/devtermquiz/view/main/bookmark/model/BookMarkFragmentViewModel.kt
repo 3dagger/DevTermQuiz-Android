@@ -45,7 +45,7 @@ class BookMarkFragmentViewModel(private val localFavoriteRepoService: LocalFavor
                     getNavigator().dismissProgress()
                 }
             },{
-
+                getNavigator().dismissProgress()
             }))
 
     }

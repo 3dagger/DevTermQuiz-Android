@@ -10,12 +10,17 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.airbnb.lottie.LottieAnimationView
+import java.time.DayOfWeek
+import java.time.temporal.WeekFields
+import java.util.*
 
 fun Activity.showDialog(activity: Activity, title: String, contents: String, cancelable: Boolean) {
     AlertDialog.Builder(activity).apply {
@@ -53,30 +58,3 @@ fun View.gone() {
 fun Context.toast(message: String) {
     Toast.makeText(applicationContext, message, Toast.LENGTH_LONG).show()
 }
-
-inline fun getValueAnimator(
-    forward: Boolean = true,
-    duration: Long,
-    interpolator: TimeInterpolator,
-    crossinline updateListener: (progress: Float) -> Unit
-): ValueAnimator {
-    val a =
-        if (forward) ValueAnimator.ofFloat(0f, 1f)
-        else ValueAnimator.ofFloat(1f, 0f)
-    a.addUpdateListener { updateListener(it.animatedValue as Float) }
-    a.duration = duration
-    a.interpolator = interpolator
-    return a
-}
-inline val Int.dp: Int
-    get() = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP, this.toFloat(), Resources.getSystem().displayMetrics).toInt()
-inline val Float.dp: Float
-    get() = TypedValue.applyDimension(
-        TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
-
-
-inline val Context.screenWidth: Int
-    get() = Point().also { (getSystemService(Context.WINDOW_SERVICE) as WindowManager).defaultDisplay.getSize(it) }.x
-inline val View.screenWidth: Int
-    get() = context!!.screenWidth

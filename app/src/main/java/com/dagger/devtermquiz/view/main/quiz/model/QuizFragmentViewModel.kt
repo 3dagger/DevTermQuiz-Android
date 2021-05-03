@@ -25,6 +25,7 @@ class QuizFragmentViewModel(private val remoteService: RemoteService,
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ searchSingleQuizData ->
+                Logger.d(searchSingleQuizData.code())
                 when(searchSingleQuizData.code()) {
                     ResponseCode.CODE200.value -> {
                         _searchSingleQuizData.value = searchSingleQuizData.body()

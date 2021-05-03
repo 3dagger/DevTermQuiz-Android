@@ -162,4 +162,6 @@ dependencies {
     // Pull To Refresh
     implementation group: 'com.lovejjfg', name: 'powerrefresh', version: '0.0.2'
 
+    // CalendarView - https://github.com/Applandeo/Material-Calendar-View
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
 }

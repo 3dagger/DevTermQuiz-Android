@@ -11,11 +11,11 @@
         android:icon="@drawable/ic_book"/>
     <item
         android:id="@+id/third_fragment"
-        android:title="Setting"
+        android:title="Calendar"
         android:icon="@drawable/ic_baseline_settings_applications_24"/>
 
     <item
         android:id="@+id/fourth_fragment"
-        android:title="Test"
+        android:title="Setting"
         android:icon="@drawable/ic_baseline_settings_applications_24"/>
 </menu>
