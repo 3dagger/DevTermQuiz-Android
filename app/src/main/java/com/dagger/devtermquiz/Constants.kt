@@ -31,8 +31,8 @@ class Constants {
         const val REQUEST_FAIL_MESSAGE_MSG                              = "서버와 통신에 실패했습니다. 다시 시도해 주세요!"
 
         const val FRAGMENT_POSITION_QUIZ                                = 0
-        const val FRAGMENT_POSITION_BOOKMARK                            = 1
-        const val FRAGMENT_POSITON_CALENDAR                             = 2
+        const val FRAGMENT_POSITION_CALENDAR                             = 1
+        const val FRAGMENT_POSITION_BOOKMARK                            = 2
         const val FRAGMENT_POSITION_SETTING                             = 3
 
         const val VIEWPAGER_ITEM_COUNT                                  = 4

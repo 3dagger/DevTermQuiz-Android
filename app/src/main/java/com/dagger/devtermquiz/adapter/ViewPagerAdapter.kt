@@ -1,10 +1,14 @@
 package com.dagger.devtermquiz.adapter
 
+import android.content.Context
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dagger.devtermquiz.Constants
+import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.view.main.bookmark.BookMarkFragment
 import com.dagger.devtermquiz.view.main.calendar.CalenderFragment
 import com.dagger.devtermquiz.view.main.quiz.QuizFragment
@@ -34,11 +38,11 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
             Constants.FRAGMENT_POSITION_QUIZ -> {
                 QuizFragment.newInstance(position)
             }
+            Constants.FRAGMENT_POSITION_CALENDAR -> {
+                CalenderFragment.newInstance(position)
+            }
             Constants.FRAGMENT_POSITION_BOOKMARK -> {
                 BookMarkFragment.newInstance(position)
-            }
-            Constants.FRAGMENT_POSITON_CALENDAR -> {
-                CalenderFragment.newInstance(position)
             }
             Constants.FRAGMENT_POSITION_SETTING -> {
                 SettingFragment.newInstance(position)
@@ -46,4 +50,5 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
             else -> QuizFragment.newInstance(position)
         }
     }
+
 }

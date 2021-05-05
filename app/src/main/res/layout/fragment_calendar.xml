@@ -10,11 +10,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendarView"
-            app:headerColor="@color/black"
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/top_sl"
+            android:background="@drawable/main_top_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:scale_base_height="350"
+            app:scale_base_width="720">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:text="출석체크"
+                android:textStyle="bold"
+                app:scale_height="50"
+                app:scale_left="10"
+                app:scale_textsize="40"
+                app:scale_top="40"
+                app:scale_width="170" />
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/bottom_sl"
+            android:background="#000000"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:scale_base_height="960"
+            app:scale_base_width="720">
+
+            <com.applandeo.materialcalendarview.CalendarView
+                android:layout_below="@id/top_sl"
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:headerColor="@color/black"
+                app:abbreviationsBarColor="@color/white"
+                app:highlightedDaysLabelsColor="@color/white"
+                app:selectionLabelColor="@color/white"
+                app:pagesColor="@color/black"
+                app:anotherMonthsDaysLabelsColor="@color/white"
+                app:daysLabelsColor="@color/white"
+                app:scale_height="800"
+                app:scale_width="720"/>
+
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
 
     </RelativeLayout>
 

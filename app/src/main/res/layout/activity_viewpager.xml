@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -11,25 +11,39 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_above="@+id/slBottom"/>
 
-        <nl.joery.animatedbottombar.AnimatedBottomBar
-            android:id="@+id/bottom_bar"
+        <com.ssomai.android.scalablelayout.ScalableLayout
+            android:id="@+id/slBottom"
+            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="16dp"
-            android:background="#000000"
-            app:abb_badgeTextColor="#FFFFFF"
-            app:abb_tabColor="#FFFFFF"
-            app:abb_indicatorColor="#FFFFFF"
-            app:abb_tabs="@menu/menu_bottom"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_height="match_parent"
+            app:scale_base_height="120"
+            app:scale_base_width="720">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <nl.joery.animatedbottombar.AnimatedBottomBar
+                android:id="@+id/bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="16dp"
+                android:background="#000000"
+                app:abb_badgeTextColor="#FFFFFF"
+                app:abb_tabColor="#FFFFFF"
+                app:abb_indicatorLocation="bottom"
+                app:abb_indicatorColor="#FFFFFF"
+                app:abb_tabs="@menu/menu_bottom"
+                app:abb_iconSize="20dp"
+                app:scale_width="720"
+                app:scale_height="120" />
+
+
+
+
+        </com.ssomai.android.scalablelayout.ScalableLayout>
+
+
+
+    </RelativeLayout>
 </layout>
 
 

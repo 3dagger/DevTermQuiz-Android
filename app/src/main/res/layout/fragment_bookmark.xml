@@ -59,15 +59,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/top_sl">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
-            android:layout_below="@id/top_sl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             addItems="@{vm.allFavoriteData}"
-            itemClick="@{itemClickListener}"
-            />
+            itemClick="@{itemClickListener}" />
+
+        </ScrollView>
 
     </RelativeLayout>
 

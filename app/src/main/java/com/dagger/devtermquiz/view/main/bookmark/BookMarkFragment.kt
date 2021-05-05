@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -47,7 +49,12 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
             message = "잠시만 기다려주세요.",
             cancelable = false
         )
-        progress.show()
+//        progress.show()
+
+        mActivity.window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(mActivity, R.color.black)
+        }
     }
 
     override fun onProcess() {
@@ -130,6 +137,10 @@ class BookMarkFragment : BaseFragment<FragmentBookmarkBinding, BookMarkFragmentV
 
     override fun onResume() {
         super.onResume()
+        mActivity.window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(mActivity, R.color.black)
+        }
         viewModel.onLoadAllFavoriteData()
     }
 

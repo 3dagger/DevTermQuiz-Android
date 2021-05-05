@@ -46,6 +46,9 @@ class MainViewPagerActivity : BaseActivity<ActivityViewpagerBinding, MainViewPag
             }
         }
 
+//        view_pager.isFakeDragging = true
+//        view_pager.isUserInputEnabled = false
+
         doubleBackPress.setDoubleBackPressAction { finishAffinity() }
 
         // 최초 접속

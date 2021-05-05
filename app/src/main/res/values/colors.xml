@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    <color name="colorPrimary">#18BDD6</color>-->
-    <color name="colorPrimary">#000000</color>
+<!--    <color name="colorPrimary">#FFFFFF</color>-->
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#0F6088</color>
     <color name="colorAccent">#FF6284</color>
     <color name="windowBackground">#0d1227</color>
@@ -51,4 +51,6 @@
     <color name="md_blue_200">#0091EA</color>
     <color name="md_purple_100">#AA00FF</color>
     <color name="md_purple_200">#7200CA</color>
+
+    <color name="main_status">#0d1227</color>
 </resources>

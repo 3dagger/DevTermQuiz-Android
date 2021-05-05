@@ -1,19 +1,16 @@
 package com.dagger.devtermquiz.view.main.quiz
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import com.dagger.devtermquiz.Constants
 import com.dagger.devtermquiz.R
 import com.dagger.devtermquiz.base.BaseFragment
-import com.dagger.devtermquiz.databinding.FragmentMainBinding
+import com.dagger.devtermquiz.databinding.FragmentQuizBinding
 import com.dagger.devtermquiz.ext.gone
 import com.dagger.devtermquiz.ext.show
 import com.dagger.devtermquiz.listener.AwesomeDialogListener
@@ -24,13 +21,13 @@ import com.dagger.devtermquiz.utility.Utility
 import com.dagger.devtermquiz.view.main.quiz.model.QuizFragmentViewModel
 import com.kaushikthedeveloper.doublebackpress.DoubleBackPress
 import com.pixplicity.easyprefs.library.Prefs
-import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.fragment_quiz.*
 import org.koin.android.ext.android.inject
 
 
-class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
+class QuizFragment : BaseFragment<FragmentQuizBinding, QuizFragmentViewModel>(),
     QuizFragmentNavigator.View {
-    override val layoutResourceId: Int get() = R.layout.fragment_main
+    override val layoutResourceId: Int get() = R.layout.fragment_quiz
     override val viewModel: QuizFragmentViewModel by inject()
     private  val utility         : Utility by inject()
     private  val doubleBackPress : DoubleBackPress by inject()
@@ -40,9 +37,19 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
     var totalCountQuestion = Prefs.getInt(Constants.PREFS_TOTAL_QUESTION_COUNT, 1)
     var todayCountQuestion = Prefs.getInt(Constants.PREFS_QUESTION_COUNT, 1)
 
+    override fun onResume() {
+        mActivity.window.apply {
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = ContextCompat.getColor(mActivity, R.color.main_status)
+        }
+        super.onResume()
+    }
+
     @SuppressLint("SetTextI18n")
     override fun initView() {
         viewModel.setNavigator(this)
+
+
 
         buttonList = arrayOf(btn_ex1, btn_ex2, btn_ex3, btn_ex4)
 
@@ -53,9 +60,6 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
             mActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(false)
             mActivity.supportActionBar!!.setDisplayShowTitleEnabled(false);
         }
-
-//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-//        window.setStatusBarColor(Color.BLUE)
 
 
         progress = CustomProgressDialog(
@@ -81,7 +85,7 @@ class QuizFragment : BaseFragment<FragmentMainBinding, QuizFragmentViewModel>(),
             for (i in buttonList.indices) {
                 buttonList[i].background = ContextCompat.getDrawable(
                     mActivity,
-                    R.drawable.book_mark_detail_background
+                    R.drawable.main_commentary_background
                 )
                 if (i == searchQuiz.answer) {
                     // 정답 맞췄을때
